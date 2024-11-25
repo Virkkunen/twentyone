@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2xwlmcc7gd8u"]
+
+[ext_resource type="Script" path="res://scripts/card.gd" id="1_xh71b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v2bkj"]
+size = Vector2(91, 136)
+
+[node name="Card" type="Node2D"]
+script = ExtResource("1_xh71b")
+
+[node name="CardBase" type="ColorRect" parent="."]
+offset_left = -46.0
+offset_top = -68.0
+offset_right = 45.0
+offset_bottom = 68.0
+
+[node name="Rank" type="Label" parent="."]
+offset_left = -46.0
+offset_top = -53.0
+offset_right = 45.0
+offset_bottom = -30.0
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Suit" type="Label" parent="."]
+offset_left = -46.0
+offset_right = 45.0
+offset_bottom = 23.0
+text = "clubs"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(14, 22)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-14, -22)
+shape = SubResource("RectangleShape2D_v2bkj")
