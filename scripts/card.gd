@@ -23,10 +23,7 @@ enum CardRank {
 @export var card_rank : CardRank = CardRank.ACE
 @export var is_face : bool = false
 @export var card_value : int = 0
-@export var is_down : bool = true
-
-@onready var label_rank : Label = $Rank
-@onready var label_suit : Label = $Suit
+@export var face_down : bool = false
 
 func _ready() -> void:
 	pass

@@ -25,4 +25,4 @@ signal house_total_changed
     house_total = value
     emit_signal("house_total_changed")
 
-# @export var screen_size : Vector2
+@export var screen_size : Vector2

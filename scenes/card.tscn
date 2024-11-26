@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2xwlmcc7gd8u"]
+[gd_scene load_steps=3 format=3 uid="uid://c2xwlmcc7gd8u"]
 
 [ext_resource type="Script" path="res://scripts/card.gd" id="1_xh71b"]
+[ext_resource type="Texture2D" uid="uid://bnppqr10u8qm2" path="res://assets/cards/card_back.png" id="2_6ykmi"]
 
 [node name="Card" type="Node2D"]
 scale = Vector2(4, 4)
@@ -10,3 +11,10 @@ script = ExtResource("1_xh71b")
 custom_minimum_size = Vector2(22, 32)
 offset_right = 22.0
 offset_bottom = 32.0
+texture = ExtResource("2_6ykmi")
+
+[node name="shadow" type="TextureRect" parent="TextureRect"]
+custom_minimum_size = Vector2(22, 32)
+offset_right = 22.0
+offset_bottom = 32.0
+texture = ExtResource("2_6ykmi")

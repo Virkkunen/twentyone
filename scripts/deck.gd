@@ -48,9 +48,6 @@ func create_deck() -> void:
 
 			deck.append(card)
 
-func shuffle_deck() -> void:
-	deck.shuffle()
-
 # func check_for_card() -> Node2D:
 # 	var space_state = get_world_2d().direct_space_state
 # 	var params = PhysicsPointQueryParameters2D.new()
