@@ -324,7 +324,3 @@ scale = Vector2(4, 4)
 [node name="HBoxContainer" type="HBoxContainer" parent="House/CanvasLayer/Control/CenterContainer"]
 layout_mode = 2
 alignment = 1
-
-[node name="HouseTimer" type="Timer" parent="."]
-wait_time = 4.0
-one_shot = true

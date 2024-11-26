@@ -23,7 +23,6 @@ enum CardRank {
 @export var card_rank : CardRank = CardRank.ACE
 @export var is_face : bool = false
 @export var card_value : int = 0
-@export var face_down : bool = false
 
 func _ready() -> void:
 	pass
@@ -34,6 +33,3 @@ func calc_value() -> void:
 		card_value = card_rank + 1
 	elif is_face:
 		card_value = 10
-
-func flip_card() -> void:
-	pass

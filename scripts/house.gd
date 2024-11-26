@@ -49,6 +49,7 @@ func face_down_card() -> void:
 
 func check_insurance():
 	if hand[0].card_rank == Card.CardRank.ACE:
+		var InfoLabel = $"../HUD/CanvasLayer/Control/MarginContainer/InfoLabel"
+		InfoLabel.text = "Buy insurance?"
 		# show UI with button yes/no to buy insurance
 		# check rules for insurance
-		pass
