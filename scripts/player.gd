@@ -1,7 +1,12 @@
 extends Node2D
 
 @export var hand : Array = []
-@export var total : int
+@export var total : int = 0:
+	get:
+		return total
+	set(value):
+		total = value
+		Global.player_total = total
 
 @onready var Box = $CanvasLayer/Control/CenterContainer/HBoxContainer
 
@@ -22,7 +27,6 @@ func calc_total() -> void:
 		ace_count -= 1
 
 	total = local_total
-	Global.player_total = total
 
 func display_card(card : Node2D) -> void:
 	var new_card = TextureRect.new()

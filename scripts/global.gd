@@ -20,7 +20,7 @@ signal house_bust
     player_total = value
     emit_signal("player_total_changed")
     if player_total > 21:
-      emit_signal("player_bust")
+      player_busted = true
 
 @export var house_total = 0:
   get:
@@ -29,6 +29,20 @@ signal house_bust
     house_total = value
     emit_signal("house_total_changed")
     if house_total > 21:
-      emit_signal("house_bust")
+      house_busted = true
+
+@export var player_busted = false:
+  get:
+    return player_busted
+  set(value):
+    player_busted = value
+    emit_signal("player_bust")
+
+@export var house_busted = false:
+  get:
+    return house_busted
+  set(value):
+    house_busted = value
+    emit_signal("house_bust")
 
 @export var screen_size : Vector2

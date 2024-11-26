@@ -1,7 +1,14 @@
 extends Node2D
 
+signal house_total_changed
+
 @export var hand : Array = []
-@export var total : int
+@export var total : int = 0:
+	get:
+		return total
+	set(value):
+		total = value
+		Global.house_total = total
 
 @onready var Box = $CanvasLayer/Control/CenterContainer/HBoxContainer
 
@@ -22,7 +29,6 @@ func calc_total() -> void:
 		ace_count -= 1
 
 	total = local_total
-	Global.house_total = total
 
 func display_card(card : Node2D) -> void:
 	var new_card = TextureRect.new()
@@ -33,13 +39,16 @@ func display_card(card : Node2D) -> void:
 
 	Box.add_child(new_card)
 
-	if card.face_down == true:
-		var card_back = TextureRect.new()
-		var texture_back = load("res://assets/cards/card_back.png")
-		card_back.texture = texture_back
-		card_back.name = "cardback"
-		new_card.add_child(card_back)
+func face_down_card() -> void:
+	var card = $CanvasLayer/Control/CenterContainer/HBoxContainer.get_child(1)
+	var card_back = TextureRect.new()
+	var texture_back = load("res://assets/cards/card_back.png")
+	card_back.texture = texture_back
+	card_back.name = "cardback"
+	card.add_child(card_back)
 
-func house_hit() -> void:
-	if total < 17:
+func check_insurance():
+	if hand[0].card_rank == Card.CardRank.ACE:
+		# show UI with button yes/no to buy insurance
+		# check rules for insurance
 		pass
