@@ -3,6 +3,8 @@ extends Node2D
 @export var hand : Array = []
 @export var total : int
 
+@onready var Box = $CanvasLayer/Control/BoxContainer
+
 var Card = preload("res://scripts/card.gd")
 
 func calc_total() -> void:
@@ -23,3 +25,6 @@ func calc_total() -> void:
 
 	total = local_total
 	Global.player_total = total
+
+func display_card(card : Node2D) -> void:
+	Box.add_child(card)

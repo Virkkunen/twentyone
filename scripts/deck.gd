@@ -4,6 +4,8 @@ var Card = preload("res://scripts/card.gd")
 
 @export var deck: Array = []
 
+@onready var Box = $CanvasLayer/Control/BoxContainer
+
 # var card_being_dragged : Node2D
 
 func _ready() -> void:
@@ -36,23 +38,18 @@ func create_deck() -> void:
 			card.card_rank = rank
 			card.suit_colour = Card.SuitColour.RED if suit in [Card.CardSuit.HEARTS, Card.CardSuit.DIAMONDS] else Card.SuitColour.BLACK
 			card.is_face = true if rank in [Card.CardRank.JOKER, Card.CardRank.QUEEN, Card.CardRank.KING] else false
+			card.calc_value()
 
 			card.name = str(Card.CardRank.keys()[rank]) + " OF " + str(Card.CardSuit.keys()[suit])
+
+			var texture_path = "res://assets/cards/" + str(Card.CardRank.keys()[rank].to_lower()) + "_" + str(Card.CardSuit.keys()[suit].to_lower()) + ".png"
+			var texture = load(texture_path)
+			card.get_node("TextureRect").texture = texture
+
 			deck.append(card)
-			add_child(card)
 
 func shuffle_deck() -> void:
 	deck.shuffle()
-
-func DEBUG_show_deck() -> void:
-	var start_pos = Vector2(10, 10)
-	var card_offset = Vector2(70, 20)
-
-	for card in deck:
-		add_child(card)
-		card.position = start_pos
-		start_pos += card_offset
-		card.update_card()
 
 # func check_for_card() -> Node2D:
 # 	var space_state = get_world_2d().direct_space_state

@@ -17,6 +17,6 @@ func deal_cards(whose : Node2D, cards : int, _face_down : bool = false) -> void:
 	for index in cards:
 		var card = Deck.deck.pop_front()
 		whose.hand.append(card)
-		Deck.remove_child(card)
-		whose.add_child(card)
+		# Deck.remove_child(card)
+		whose.display_card(card)
 	whose.calc_total()

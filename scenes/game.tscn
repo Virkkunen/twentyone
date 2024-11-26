@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cf1g3icj8h4jb"]
+[gd_scene load_steps=7 format=3 uid="uid://cf1g3icj8h4jb"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_cd4p2"]
 [ext_resource type="Script" path="res://scripts/deck.gd" id="2_qfe0i"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="3_d633v"]
 [ext_resource type="Script" path="res://scripts/house.gd" id="4_ehm00"]
+[ext_resource type="PackedScene" uid="uid://c2xwlmcc7gd8u" path="res://scenes/card.tscn" id="4_rakmb"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="5_ofnyn"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_cd4p2")
@@ -11,8 +13,151 @@ script = ExtResource("1_cd4p2")
 [node name="Deck" type="Node2D" parent="."]
 script = ExtResource("2_qfe0i")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Deck"]
+
+[node name="Control" type="Control" parent="Deck/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="Deck/CanvasLayer/Control"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.109
+anchor_top = 0.522
+anchor_right = 0.109
+anchor_bottom = 0.522
+offset_left = -32.568
+offset_top = -34.256
+offset_right = 32.432
+offset_bottom = 33.744
+grow_vertical = 2
+alignment = 1
+
 [node name="Player" type="Node2D" parent="."]
 script = ExtResource("3_d633v")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+
+[node name="Control" type="Control" parent="Player/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="Player/CanvasLayer/Control"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.444
+anchor_top = 0.781
+anchor_right = 0.444
+anchor_bottom = 0.781
+offset_left = -85.488
+offset_top = -78.088
+offset_right = 84.512
+offset_bottom = 77.912
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Card" parent="Player/CanvasLayer/Control/BoxContainer" instance=ExtResource("4_rakmb")]
+position = Vector2(354, -204)
+
+[node name="Card2" parent="Player/CanvasLayer/Control/BoxContainer" instance=ExtResource("4_rakmb")]
+position = Vector2(306, -212)
+
 [node name="House" type="Node2D" parent="."]
 script = ExtResource("4_ehm00")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="House"]
+
+[node name="Control" type="Control" parent="House/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="House/CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="HUD" type="CanvasGroup" parent="."]
+script = ExtResource("5_ofnyn")
+
+[node name="HouseCanvas" type="CanvasLayer" parent="HUD"]
+
+[node name="Control" type="Control" parent="HUD/HouseCanvas"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HouseHUD" type="NinePatchRect" parent="HUD/HouseCanvas/Control"]
+layout_mode = 1
+offset_right = 128.0
+offset_bottom = 40.0
+patch_margin_left = 64
+patch_margin_right = 64
+
+[node name="Total" type="Label" parent="HUD/HouseCanvas/Control/HouseHUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Total: 21"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerCanvas" type="CanvasLayer" parent="HUD"]
+
+[node name="Control" type="Control" parent="HUD/PlayerCanvas"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerHUD" type="NinePatchRect" parent="HUD/PlayerCanvas/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 128.0
+grow_vertical = 0
+patch_margin_left = 64
+patch_margin_right = 64
+metadata/_edit_use_anchors_ = true
+
+[node name="Total" type="Label" parent="HUD/PlayerCanvas/Control/PlayerHUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Total: 21"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
