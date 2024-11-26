@@ -37,4 +37,9 @@ func display_card(card : Node2D) -> void:
 		var card_back = TextureRect.new()
 		var texture_back = load("res://assets/cards/card_back.png")
 		card_back.texture = texture_back
+		card_back.name = "cardback"
 		new_card.add_child(card_back)
+
+func house_hit() -> void:
+	if total < 17:
+		pass

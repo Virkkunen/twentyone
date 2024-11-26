@@ -2,6 +2,7 @@ extends CanvasGroup
 
 @onready var HouseHUD = $HouseCanvas/Control/HouseHUD 
 @onready var PlayerHUD = $PlayerCanvas/Control/PlayerHUD
+@onready var ButtonHit = $PlayerCanvas/Control/PlayerHUD/Buttons/ButtonHit
 
 func _ready() -> void:
   Global.connect("player_total_changed", _on_player_total_changed)
@@ -12,3 +13,4 @@ func _on_player_total_changed() -> void:
 
 func _on_house_total_changed() -> void:
   HouseHUD.get_node("Total").text = "Total: " + str(Global.house_total)
+
