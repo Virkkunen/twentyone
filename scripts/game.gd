@@ -114,6 +114,7 @@ func _on_player_blackjack() -> void:
 
 func house_start_turn() -> void:
 	InfoLabel.text = "House turn"
+	# this spaghetti removes the card back texture
 	$House/CanvasLayer/Control/CenterContainer/HBoxContainer.get_child(1).get_child(0).queue_free()
 	await get_tree().create_timer(2).timeout
 	if Global.house_total < 17:
