@@ -6,7 +6,7 @@ extends Node2D
 @onready var Player = $Player
 @onready var House = $House
 # @onready var InfoLabel = $HUD/CanvasLayer/Control/MarginContainer/InfoLabel
-@onready var InfoLabel = $Screen/Control/MarginContainer/VBoxContainer/Center/InfoLabel
+# @onready var InfoLabel = $Screen/Control/MarginContainer/VBoxContainer/Center/InfoLabel
 # @onready var Buttons = $HUD/PlayerCanvas/Control/PlayerHUD/VBoxContainer/Buttons
 @onready var Buttons = $Screen/Control/MarginContainer/VBoxContainer/Buttons
 @onready var ButtonHit = Buttons.get_node("ButtonHit")
@@ -46,24 +46,24 @@ func check_win() -> void:
 	var player_won : bool = false
 
 	if Global.player_busted and Global.house_busted:
-		InfoLabel.text = "No one won"
+		Global.info_label = "No one won"
 	elif Global.house_busted:
-		InfoLabel.text = "Player wins!"
+		Global.info_label = "Player wins!"
 		player_won = true
 		# check payout for 21, dd
 	elif Global.player_busted:
-		InfoLabel.text = "House wins!"
+		Global.info_label = "House wins!"
 		await get_tree().create_timer(3).timeout
-		InfoLabel.text = "The game was rigged from the start"
+		Global.info_label = "The game was rigged from the start"
 	elif Global.player_total == Global.house_total:
-		InfoLabel.text = "Tie"
+		Global.info_label = "Tie"
 		Global.player_chips += payout
 	elif Global.player_total > Global.house_total:
-		InfoLabel.text = "Player wins!"
+		Global.info_label = "Player wins!"
 		player_won = true
 		# check payout for 21, dd
 	else:
-		InfoLabel.text = "House wins!"
+		Global.info_label = "House wins!"
 
 	if player_won:
 		check_payout(payout)
@@ -85,20 +85,20 @@ func hide_buttons() -> void:
 		button.visible = false
 
 func _on_player_hit() -> void:
-	InfoLabel.text = "Player hits"
+	Global.info_label = "Player hits"
 	deal_cards(Player, 1)
 	await get_tree().create_timer(1).timeout
 
 func _on_player_bust() -> void:
 	hide_buttons()
-	InfoLabel.text = "Player busts"
+	Global.info_label = "Player busts"
 	await get_tree().create_timer(3).timeout
 	house_start_turn()
 	# house turn
 
 func _on_player_stand() -> void:
 	hide_buttons()
-	InfoLabel.text = "Player stands"
+	Global.info_label = "Player stands"
 	await get_tree().create_timer(3).timeout
 	house_start_turn()
 	# house turn
@@ -113,13 +113,13 @@ func _on_player_double_down() -> void:
 	pass
 
 func _on_player_blackjack() -> void:
-	InfoLabel.text = "Twentyone!"
+	Global.info_label = "Twentyone!"
 	hide_buttons()
 	await get_tree().create_timer(3).timeout
 	house_start_turn()
 
 func house_start_turn() -> void:
-	InfoLabel.text = "House turn"
+	Global.info_label = "House turn"
 	# this spaghetti removes the card back texture
 	# $House/CanvasLayer/Control/CenterContainer/HBoxContainer.get_child(1).get_child(0).queue_free()
 	$Screen/Control/MarginContainer/VBoxContainer/HouseHand/Cards.get_child(1).get_child(0).queue_free()
@@ -131,26 +131,26 @@ func house_start_turn() -> void:
 
 func _on_house_hit() -> void:
 	while Global.house_total < 17:
-		InfoLabel.text = "House hits"
+		Global.info_label = "House hits"
 		deal_cards(House, 1)
 		await get_tree().create_timer(2).timeout
 	_on_house_stand()
 	# deal card
 
 func _on_house_stand() -> void:
-	InfoLabel.text = "House stands"
+	Global.info_label = "House stands"
 	await get_tree().create_timer(2).timeout
 	check_win()
 	# hits to 17 or more
 	# calc scores, restart game
 
 func _on_house_bust() -> void:
-	InfoLabel.text = "House busts"
+	Global.info_label = "House busts"
 	await get_tree().create_timer(2).timeout
 	check_win()
 	# calc scores
 
 func _on_house_blackjack() -> void:
-	InfoLabel.text = "Blackjack!"
+	Global.info_label = "Blackjack!"
 	await get_tree().create_timer(2).timeout
 	check_win()

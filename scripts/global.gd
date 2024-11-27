@@ -8,6 +8,7 @@ signal player_blackjack
 signal house_blackjack
 signal player_chips_changed
 signal pot_changed
+signal info_label_changed
 
 @export var player_total : int = 0:
   get:
@@ -72,5 +73,12 @@ signal pot_changed
   set(value):
     house_blackjacked = value
     emit_signal("house_blackjack")
+
+@export var info_label : String = "twentyone":
+  get:
+    return info_label
+  set(value):
+    info_label = value
+    emit_signal("info_label_changed")
 
 @export var screen_size : Vector2
