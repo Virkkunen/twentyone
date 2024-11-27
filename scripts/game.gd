@@ -6,9 +6,9 @@ extends Node2D
 @onready var Player = $Player
 @onready var House = $House
 @onready var InfoLabel = $HUD/CanvasLayer/Control/MarginContainer/InfoLabel
-@onready var Buttons = $HUD/PlayerCanvas/Control/PlayerHUD/Buttons
-@onready var ButtonHit = $HUD/PlayerCanvas/Control/PlayerHUD/Buttons/ButtonHit
-@onready var ButtonStand = $HUD/PlayerCanvas/Control/PlayerHUD/Buttons/ButtonStand
+@onready var Buttons = $HUD/PlayerCanvas/Control/PlayerHUD/VBoxContainer/Buttons
+@onready var ButtonHit = Buttons.get_node("ButtonHit")
+@onready var ButtonStand = Buttons.get_node("ButtonStand")
 
 func _ready() -> void:
 	# set up the game
@@ -76,7 +76,7 @@ func check_payout(payout : int) -> void:
 
 	Global.player_chips += (payout * multiplier)
 	# restart game
-			
+
 
 func _on_player_hit() -> void:
 	InfoLabel.text = "Player hits"

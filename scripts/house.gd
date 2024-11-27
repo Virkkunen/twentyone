@@ -36,6 +36,8 @@ func display_card(card : Node2D) -> void:
 	var texture_path = "res://assets/cards/" + str(card.CardRank.keys()[card.card_rank].to_lower()) + "_" + str(card.CardSuit.keys()[card.card_suit].to_lower()) + ".png"
 	var texture = load(texture_path)
 	new_card.texture = texture
+	new_card.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	new_card.custom_minimum_size = Vector2(176, 256)
 
 	Box.add_child(new_card)
 
@@ -44,6 +46,8 @@ func face_down_card() -> void:
 	var card_back = TextureRect.new()
 	var texture_back = load("res://assets/cards/card_back.png")
 	card_back.texture = texture_back
+	card_back.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	card_back.custom_minimum_size = Vector2(176, 256)
 	card_back.name = "cardback"
 	card.add_child(card_back)
 

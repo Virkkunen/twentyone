@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cf1g3icj8h4jb"]
+[gd_scene load_steps=12 format=3 uid="uid://cf1g3icj8h4jb"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_cd4p2"]
 [ext_resource type="Script" path="res://scripts/deck.gd" id="2_qfe0i"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://scripts/house.gd" id="4_ehm00"]
 [ext_resource type="Texture2D" uid="uid://bnppqr10u8qm2" path="res://assets/cards/card_back.png" id="5_mxl7a"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="5_ofnyn"]
-[ext_resource type="Texture2D" uid="uid://bqr2a07uexocc" path="res://assets/ui/bottom.png" id="6_d38uf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pl2hf"]
 bg_color = Color(0.498039, 0.517647, 0.611765, 1)
@@ -71,6 +70,135 @@ Button/styles/pressed = SubResource("StyleBoxFlat_jtj3i")
 [node name="Game" type="Node2D"]
 script = ExtResource("1_cd4p2")
 
+[node name="Deck" type="Node2D" parent="."]
+script = ExtResource("2_qfe0i")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Deck"]
+
+[node name="Control" type="Control" parent="Deck/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Deck/CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 168.0
+offset_top = -20.0
+offset_right = 208.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="CanvasGroup" type="CanvasGroup" parent="Deck/CanvasLayer/Control/CenterContainer"]
+
+[node name="TextureRect3" type="TextureRect" parent="Deck/CanvasLayer/Control/CenterContainer/CanvasGroup"]
+custom_minimum_size = Vector2(176, 256)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -110.0
+offset_right = 106.0
+offset_bottom = 146.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_mxl7a")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Deck/CanvasLayer/Control/CenterContainer/CanvasGroup"]
+custom_minimum_size = Vector2(176, 256)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -119.0
+offset_right = 97.0
+offset_bottom = 137.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_mxl7a")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Deck/CanvasLayer/Control/CenterContainer/CanvasGroup"]
+custom_minimum_size = Vector2(176, 256)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = -16.0
+offset_right = 11.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_mxl7a")
+expand_mode = 1
+
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource("3_d633v")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+
+[node name="Control" type="Control" parent="Player/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="Player/CanvasLayer/Control"]
+custom_minimum_size = Vector2(22, 32)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -16.0
+offset_bottom = 959.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Player/CanvasLayer/Control/CenterContainer"]
+custom_minimum_size = Vector2(22, 32)
+layout_mode = 2
+alignment = 1
+
+[node name="House" type="Node2D" parent="."]
+script = ExtResource("4_ehm00")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="House"]
+
+[node name="Control" type="Control" parent="House/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="House/CanvasLayer/Control"]
+layout_mode = 2
+offset_right = 1080.0
+offset_bottom = 960.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="House/CanvasLayer/Control/CenterContainer"]
+layout_mode = 2
+alignment = 1
+
 [node name="HUD" type="CanvasGroup" parent="."]
 script = ExtResource("5_ofnyn")
 
@@ -84,21 +212,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="HUD/CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -576.0
-offset_top = -183.0
-offset_right = 576.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("6_d38uf")
-region_rect = Rect2(4.42827, 0, 22.7515, 32)
-
 [node name="MarginContainer" type="MarginContainer" parent="HUD/CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 8
@@ -107,13 +220,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -84.0
+offset_top = -20.0
 offset_right = 20.0
-offset_bottom = -44.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="InfoLabel" type="Label" parent="HUD/CanvasLayer/Control/MarginContainer"]
+z_index = 10
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.313726)
 theme_override_colors/font_outline_color = Color(0.0666667, 0.0666667, 0.105882, 1)
@@ -122,7 +236,7 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 6
 theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("4_1romf")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 48
 
 [node name="HouseCanvas" type="CanvasLayer" parent="HUD"]
 
@@ -168,159 +282,47 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PlayerHUD" type="MarginContainer" parent="HUD/PlayerCanvas/Control"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -576.0
-offset_top = -171.0
-offset_right = 576.0
-offset_bottom = -12.0
+offset_top = -96.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 80
 
-[node name="Total" type="Label" parent="HUD/PlayerCanvas/Control/PlayerHUD"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/PlayerCanvas/Control/PlayerHUD"]
 layout_mode = 2
+theme_override_constants/separation = 26
+alignment = 1
+
+[node name="Total" type="Label" parent="HUD/PlayerCanvas/Control/PlayerHUD/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_1romf")
+theme_override_font_sizes/font_size = 36
 text = "Total: 21"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Buttons" type="FlowContainer" parent="HUD/PlayerCanvas/Control/PlayerHUD"]
+[node name="ButtonsConditional" type="HBoxContainer" parent="HUD/PlayerCanvas/Control/PlayerHUD/VBoxContainer"]
+layout_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="HUD/PlayerCanvas/Control/PlayerHUD/VBoxContainer"]
 z_index = 6
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-theme_override_constants/h_separation = 32
-theme_override_constants/v_separation = 16
+size_flags_vertical = 3
 alignment = 1
-last_wrap_alignment = 2
 
-[node name="ButtonHit" type="Button" parent="HUD/PlayerCanvas/Control/PlayerHUD/Buttons"]
+[node name="ButtonHit" type="Button" parent="HUD/PlayerCanvas/Control/PlayerHUD/VBoxContainer/Buttons"]
 layout_mode = 2
 theme = SubResource("Theme_uaoyn")
 text = "HIT"
 
-[node name="ButtonStand" type="Button" parent="HUD/PlayerCanvas/Control/PlayerHUD/Buttons"]
+[node name="ButtonStand" type="Button" parent="HUD/PlayerCanvas/Control/PlayerHUD/VBoxContainer/Buttons"]
 layout_mode = 2
 theme = SubResource("Theme_uaoyn")
 text = "Stand"
-
-[node name="Deck" type="Node2D" parent="."]
-script = ExtResource("2_qfe0i")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Deck"]
-
-[node name="Control" type="Control" parent="Deck/CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect3" type="TextureRect" parent="Deck/CanvasLayer/Control"]
-layout_mode = 2
-offset_left = 58.0
-offset_top = 210.0
-offset_right = 80.0
-offset_bottom = 242.0
-scale = Vector2(4, 4)
-texture = ExtResource("5_mxl7a")
-
-[node name="TextureRect2" type="TextureRect" parent="Deck/CanvasLayer/Control"]
-layout_mode = 2
-offset_left = 53.0
-offset_top = 205.0
-offset_right = 75.0
-offset_bottom = 237.0
-scale = Vector2(4, 4)
-texture = ExtResource("5_mxl7a")
-
-[node name="TextureRect" type="TextureRect" parent="Deck/CanvasLayer/Control"]
-layout_mode = 2
-offset_left = 48.0
-offset_top = 200.0
-offset_right = 70.0
-offset_bottom = 232.0
-scale = Vector2(4, 4)
-texture = ExtResource("5_mxl7a")
-
-[node name="Player" type="Node2D" parent="."]
-script = ExtResource("3_d633v")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
-
-[node name="Control" type="Control" parent="Player/CanvasLayer"]
-layout_mode = 3
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -92.0
-offset_right = 1.0
-offset_bottom = -92.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 3
-size_flags_vertical = 6
-
-[node name="CenterContainer" type="CenterContainer" parent="Player/CanvasLayer/Control"]
-custom_minimum_size = Vector2(22, 32)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -276.0
-offset_top = -244.0
-offset_right = -138.0
-offset_bottom = -212.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(4, 4)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Player/CanvasLayer/Control/CenterContainer"]
-custom_minimum_size = Vector2(22, 32)
-layout_mode = 2
-alignment = 1
-
-[node name="House" type="Node2D" parent="."]
-script = ExtResource("4_ehm00")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="House"]
-
-[node name="Control" type="Control" parent="House/CanvasLayer"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-
-[node name="CenterContainer" type="CenterContainer" parent="House/CanvasLayer/Control"]
-custom_minimum_size = Vector2(22, 32)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -276.0
-offset_top = -260.0
-offset_right = -138.0
-offset_bottom = -228.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(4, 4)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="House/CanvasLayer/Control/CenterContainer"]
-layout_mode = 2
-alignment = 1

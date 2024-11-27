@@ -34,5 +34,7 @@ func display_card(card : Node2D) -> void:
 	var texture_path = "res://assets/cards/" + str(card.CardRank.keys()[card.card_rank].to_lower()) + "_" + str(card.CardSuit.keys()[card.card_suit].to_lower()) + ".png"
 	var texture = load(texture_path)
 	new_card.texture = texture
+	new_card.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	new_card.custom_minimum_size = Vector2(176, 256)
 
 	Box.add_child(new_card)
