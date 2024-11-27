@@ -1,25 +1,12 @@
 # TODO
 
-- fix payout paying double
-- ~~fix aces logic~~
 - implement double down
 - implement split
-- implement game restart
-  - should go to betting phase
+- implement quit button
+	- X on top right corner, brings back to main menu and resets
 - create responsive UI
-  - have 2 big buttons for hit/stand
-  - if split and dd, add row button on top of hit/stand
-    - check example below
+	- better layout for split and dd buttons
+	-
 - create menu
-  - play, help, credits
-  - on new game, start with the bet logic
-    - don't show cards or anything, buttons are increase/decrease
-- ~~fix android export~~
-  - ~~and test android export~~
-- ~~change table bg~~
-
-<!-- |         | -->
-<!-- | ___ ___ | -->
-<!-- | --- --- | -->
-<!-- | [ ] [ ] | -->
-<!-- |---------| -->
+	- play, help, credits
+- investigate why house busts then stands

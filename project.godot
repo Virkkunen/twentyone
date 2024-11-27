@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="twentyone"
-config/version="0.0.5"
-run/main_scene="res://scenes/game.tscn"
+config/version="0.1.0"
+run/main_scene="res://scenes/BettingScene.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
+boot_splash/bg_color=Color(0.0666667, 0.0666667, 0.105882, 1)
+boot_splash/image="res://assets/cards/card_back-big.png"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://assets/icon.svg"
 
 [autoload]
@@ -32,6 +36,10 @@ window/vsync/vsync_mode=0
 [editor]
 
 movie_writer/movie_file="/home/vrkknn/git/twentyone/build/demo.avi"
+
+[physics]
+
+common/physics_ticks_per_second=20
 
 [rendering]
 
