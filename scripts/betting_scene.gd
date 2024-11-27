@@ -18,13 +18,13 @@ func _on_bet_button_pressed(which : String) -> void:
 	match which:
 		"increase":
 			if Global.player_chips > 0:
-				Input.vibrate_handheld(2)
+				Input.vibrate_handheld(4)
 				Global.player_chips -= 1
 				Global.pot += 1
 
 		"decrease":
 			if Global.pot > 0:
-				Input.vibrate_handheld(2)
+				Input.vibrate_handheld(4)
 				Global.player_chips += 1
 				Global.pot -= 1
 
@@ -38,5 +38,5 @@ func _on_bet_button_pressed(which : String) -> void:
 				Input.vibrate_handheld(100)
 				Global.info_label = "You need to bet something!"
 			else:
-				Input.vibrate_handheld(50, 0.7)
+				Input.vibrate_handheld(56, 0.7)
 				get_tree().change_scene_to_file("res://scenes/game.tscn")
