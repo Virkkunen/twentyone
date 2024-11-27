@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cuoiyf4rmmrch"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cuoiyf4rmmrch"]
 
 [ext_resource type="FontFile" uid="uid://do2x8iw2nkvi4" path="res://assets/fonts/HomeVideo-BLG6G.ttf" id="1_j7jmv"]
 
@@ -81,6 +81,8 @@ shadow_size = 1
 shadow_offset = Vector2(1, 1)
 anti_aliasing = false
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xqlxl"]
+
 [resource]
 Button/colors/font_color = Color(0.803922, 0.839216, 0.956863, 1)
 Button/colors/font_disabled_color = Color(0.65098, 0.678431, 0.784314, 1)
@@ -98,6 +100,10 @@ Button/styles/focus = SubResource("StyleBoxEmpty_kndwn")
 Button/styles/hover = SubResource("StyleBoxFlat_7x52s")
 Button/styles/normal = SubResource("StyleBoxFlat_ikp44")
 Button/styles/pressed = SubResource("StyleBoxFlat_uc45i")
+FlowContainer/constants/h_separation = 12
+FlowContainer/constants/v_separation = 12
+GridContainer/constants/h_separation = 36
+GridContainer/constants/v_separation = 36
 Label/colors/font_color = Color(0.803922, 0.839216, 0.956863, 1)
 Label/colors/font_outline_color = Color(0.0666667, 0.0666667, 0.105882, 1)
 Label/colors/font_shadow_color = Color(0.0666667, 0.0666667, 0.105882, 0.6)
@@ -107,3 +113,5 @@ Label/constants/shadow_offset_y = 2
 Label/constants/shadow_outline_size = 2
 Label/font_sizes/font_size = 28
 Label/fonts/font = ExtResource("1_j7jmv")
+Panel/styles/panel = SubResource("StyleBoxEmpty_xqlxl")
+VBoxContainer/constants/separation = 24

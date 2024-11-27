@@ -1,7 +1,5 @@
 extends Node2D
 
-signal house_total_changed
-
 @export var hand : Array = []
 @export var total : int = 0:
 	get:
@@ -10,7 +8,8 @@ signal house_total_changed
 		total = value
 		Global.house_total = total
 
-@onready var Box = $CanvasLayer/Control/CenterContainer/HBoxContainer
+# @onready var Box = $CanvasLayer/Control/CenterContainer/HBoxContainer
+@onready var Box = $"../Screen/Control/MarginContainer/VBoxContainer/HouseHand/Cards"
 
 var Card = preload("res://scripts/card.gd")
 
@@ -42,7 +41,8 @@ func display_card(card : Node2D) -> void:
 	Box.add_child(new_card)
 
 func face_down_card() -> void:
-	var card = $CanvasLayer/Control/CenterContainer/HBoxContainer.get_child(1)
+	# var card = $CanvasLayer/Control/CenterContainer/HBoxContainer.get_child(1)
+	var card = Box.get_child(1)
 	var card_back = TextureRect.new()
 	var texture_back = load("res://assets/cards/card_back.png")
 	card_back.texture = texture_back

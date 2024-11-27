@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="3_d633v"]
 [ext_resource type="Script" path="res://scripts/house.gd" id="4_ehm00"]
 [ext_resource type="Texture2D" uid="uid://bnppqr10u8qm2" path="res://assets/cards/card_back.png" id="5_mxl7a"]
-[ext_resource type="Script" path="res://scripts/hud.gd" id="5_ofnyn"]
 [ext_resource type="Theme" uid="uid://cuoiyf4rmmrch" path="res://resources/base.tres" id="7_82s7f"]
+[ext_resource type="Script" path="res://scripts/screen.gd" id="8_we8qm"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_cd4p2")
@@ -15,6 +15,7 @@ script = ExtResource("1_cd4p2")
 script = ExtResource("2_qfe0i")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Deck"]
+visible = false
 
 [node name="Control" type="Control" parent="Deck/CanvasLayer"]
 layout_mode = 3
@@ -88,214 +89,139 @@ expand_mode = 1
 [node name="Player" type="Node2D" parent="."]
 script = ExtResource("3_d633v")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
-
-[node name="Control" type="Control" parent="Player/CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 6
-
-[node name="CenterContainer" type="CenterContainer" parent="Player/CanvasLayer/Control"]
-custom_minimum_size = Vector2(22, 32)
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -192.0
-offset_bottom = 783.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Player/CanvasLayer/Control/CenterContainer"]
-layout_mode = 2
-alignment = 1
-
 [node name="House" type="Node2D" parent="."]
 script = ExtResource("4_ehm00")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="House"]
+[node name="Screen" type="CanvasLayer" parent="."]
+script = ExtResource("8_we8qm")
 
-[node name="Control" type="Control" parent="House/CanvasLayer"]
+[node name="Control" type="Control" parent="Screen"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
+theme = ExtResource("7_82s7f")
+
+[node name="MarginContainer" type="MarginContainer" parent="Screen/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 96
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 48
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/Control/MarginContainer"]
+layout_mode = 2
+
+[node name="ChipsAndPot" type="VBoxContainer" parent="Screen/Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 102)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Chips" type="Label" parent="Screen/Control/MarginContainer/VBoxContainer/ChipsAndPot"]
+layout_mode = 2
+theme = ExtResource("7_82s7f")
+theme_override_font_sizes/font_size = 42
+text = "Chips: 50"
+
+[node name="Pot" type="Label" parent="Screen/Control/MarginContainer/VBoxContainer/ChipsAndPot"]
+layout_mode = 2
+theme = ExtResource("7_82s7f")
+theme_override_font_sizes/font_size = 42
+text = "Pot: 50"
+
+[node name="Spacer" type="Panel" parent="Screen/Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="HouseHand" type="VBoxContainer" parent="Screen/Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 363)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Total" type="Label" parent="Screen/Control/MarginContainer/VBoxContainer/HouseHand"]
+custom_minimum_size = Vector2(0, 51)
+layout_mode = 2
 size_flags_vertical = 6
-
-[node name="CenterContainer" type="CenterContainer" parent="House/CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -960.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="House/CanvasLayer/Control/CenterContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="HUD" type="CanvasGroup" parent="."]
-script = ExtResource("5_ofnyn")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="HUD"]
-
-[node name="Control" type="Control" parent="HUD/CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="HUD/CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="InfoLabel" type="Label" parent="HUD/CanvasLayer/Control/MarginContainer"]
-z_index = 10
-layout_mode = 2
 theme = ExtResource("7_82s7f")
-theme_override_font_sizes/font_size = 48
-
-[node name="HouseCanvas" type="CanvasLayer" parent="HUD"]
-
-[node name="Control" type="Control" parent="HUD/HouseCanvas"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HouseHUD" type="MarginContainer" parent="HUD/HouseCanvas/Control"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 288.0
-offset_bottom = 318.0
-grow_horizontal = 2
-
-[node name="Total" type="Label" parent="HUD/HouseCanvas/Control/HouseHUD"]
-layout_mode = 2
-theme = ExtResource("7_82s7f")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 56
 text = "Total: 21"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerCanvas" type="CanvasLayer" parent="HUD"]
-layer = 3
-
-[node name="Control" type="Control" parent="HUD/PlayerCanvas"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 6
-metadata/_edit_use_anchors_ = true
-
-[node name="PlayerHUD" type="MarginContainer" parent="HUD/PlayerCanvas/Control"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -96.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 80
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/PlayerCanvas/Control/PlayerHUD"]
+[node name="Cards" type="FlowContainer" parent="Screen/Control/MarginContainer/VBoxContainer/HouseHand"]
+custom_minimum_size = Vector2(0, 288)
 layout_mode = 2
-theme_override_constants/separation = 26
 alignment = 1
 
-[node name="ButtonsConditional" type="HBoxContainer" parent="HUD/PlayerCanvas/Control/PlayerHUD/VBoxContainer"]
-layout_mode = 2
-
-[node name="Buttons" type="HBoxContainer" parent="HUD/PlayerCanvas/Control/PlayerHUD/VBoxContainer"]
-z_index = 6
+[node name="Center" type="MarginContainer" parent="Screen/Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 339)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 24
+
+[node name="InfoLabel" type="Label" parent="Screen/Control/MarginContainer/VBoxContainer/Center"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme = ExtResource("7_82s7f")
+theme_override_font_sizes/font_size = 58
+text = "twentyone"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer2" type="Panel" parent="Screen/Control/MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+
+[node name="PlayerHand" type="VBoxContainer" parent="Screen/Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 331)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Total" type="Label" parent="Screen/Control/MarginContainer/VBoxContainer/PlayerHand"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("7_82s7f")
+theme_override_font_sizes/font_size = 56
+text = "Total: 21"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cards" type="FlowContainer" parent="Screen/Control/MarginContainer/VBoxContainer/PlayerHand"]
+custom_minimum_size = Vector2(0, 256)
+layout_mode = 2
 alignment = 1
 
-[node name="ButtonHit" type="Button" parent="HUD/PlayerCanvas/Control/PlayerHUD/VBoxContainer/Buttons"]
+[node name="Spacer3" type="Panel" parent="Screen/Control/MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+
+[node name="Buttons" type="GridContainer" parent="Screen/Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 256)
+layout_mode = 2
+size_flags_vertical = 6
+columns = 2
+
+[node name="ButtonHit" type="Button" parent="Screen/Control/MarginContainer/VBoxContainer/Buttons"]
 custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("7_82s7f")
 text = "HIT"
 
-[node name="ButtonStand" type="Button" parent="HUD/PlayerCanvas/Control/PlayerHUD/VBoxContainer/Buttons"]
+[node name="ButtonStand" type="Button" parent="Screen/Control/MarginContainer/VBoxContainer/Buttons"]
 custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("7_82s7f")
 text = "Stand"
-
-[node name="Total" type="Label" parent="HUD/PlayerCanvas/Control"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -502.0
-offset_bottom = -472.0
-grow_horizontal = 2
-grow_vertical = 0
-theme = ExtResource("7_82s7f")
-theme_override_font_sizes/font_size = 32
-text = "Total: 21"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ChipsInfo" type="MarginContainer" parent="HUD/PlayerCanvas/Control"]
-layout_mode = 1
-offset_left = 80.0
-offset_top = 80.0
-offset_right = 231.0
-offset_bottom = 136.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/PlayerCanvas/Control/ChipsInfo"]
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="Chips" type="Label" parent="HUD/PlayerCanvas/Control/ChipsInfo/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("7_82s7f")
-theme_override_font_sizes/font_size = 28
-text = "Chips: 50"
-
-[node name="Pot" type="Label" parent="HUD/PlayerCanvas/Control/ChipsInfo/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("7_82s7f")
-theme_override_font_sizes/font_size = 28
-text = "Pot: 50"

@@ -8,7 +8,8 @@ extends Node2D
 		total = value
 		Global.player_total = total
 
-@onready var Box = $CanvasLayer/Control/CenterContainer/HBoxContainer
+# @onready var Box = $CanvasLayer/Control/CenterContainer/HBoxContainer
+@onready var Box = $"../Screen/Control/MarginContainer/VBoxContainer/PlayerHand/Cards"
 
 var Card = preload("res://scripts/card.gd")
 

@@ -5,8 +5,10 @@ extends Node2D
 @onready var Deck = $Deck
 @onready var Player = $Player
 @onready var House = $House
-@onready var InfoLabel = $HUD/CanvasLayer/Control/MarginContainer/InfoLabel
-@onready var Buttons = $HUD/PlayerCanvas/Control/PlayerHUD/VBoxContainer/Buttons
+# @onready var InfoLabel = $HUD/CanvasLayer/Control/MarginContainer/InfoLabel
+@onready var InfoLabel = $Screen/Control/MarginContainer/VBoxContainer/Center/InfoLabel
+# @onready var Buttons = $HUD/PlayerCanvas/Control/PlayerHUD/VBoxContainer/Buttons
+@onready var Buttons = $Screen/Control/MarginContainer/VBoxContainer/Buttons
 @onready var ButtonHit = Buttons.get_node("ButtonHit")
 @onready var ButtonStand = Buttons.get_node("ButtonStand")
 
@@ -77,6 +79,10 @@ func check_payout(payout : int) -> void:
 	Global.player_chips += (payout * multiplier)
 	# restart game
 
+func hide_buttons() -> void:
+	var buttons_array = Buttons.get_children()
+	for button in buttons_array:
+		button.visible = false
 
 func _on_player_hit() -> void:
 	InfoLabel.text = "Player hits"
@@ -84,14 +90,14 @@ func _on_player_hit() -> void:
 	await get_tree().create_timer(1).timeout
 
 func _on_player_bust() -> void:
-	Buttons.visible = false
+	hide_buttons()
 	InfoLabel.text = "Player busts"
 	await get_tree().create_timer(3).timeout
 	house_start_turn()
 	# house turn
 
 func _on_player_stand() -> void:
-	Buttons.visible = false
+	hide_buttons()
 	InfoLabel.text = "Player stands"
 	await get_tree().create_timer(3).timeout
 	house_start_turn()
@@ -107,15 +113,16 @@ func _on_player_double_down() -> void:
 	pass
 
 func _on_player_blackjack() -> void:
-	InfoLabel.text = "Blackjack!"
-	Buttons.visible = false
+	InfoLabel.text = "Twentyone!"
+	hide_buttons()
 	await get_tree().create_timer(3).timeout
 	house_start_turn()
 
 func house_start_turn() -> void:
 	InfoLabel.text = "House turn"
 	# this spaghetti removes the card back texture
-	$House/CanvasLayer/Control/CenterContainer/HBoxContainer.get_child(1).get_child(0).queue_free()
+	# $House/CanvasLayer/Control/CenterContainer/HBoxContainer.get_child(1).get_child(0).queue_free()
+	$Screen/Control/MarginContainer/VBoxContainer/HouseHand/Cards.get_child(1).get_child(0).queue_free()
 	await get_tree().create_timer(2).timeout
 	if Global.house_total < 17:
 		_on_house_hit()
