@@ -88,11 +88,13 @@ func check_if_split() -> void:
 		ExtraButtons.get_node("ButtonSplit").visible = true
 
 func _on_player_hit() -> void:
+	Input.vibrate_handheld(2)
 	Global.info_label = "Player hits"
 	deal_cards(Player, 1)
 	ExtraButtons.visible = false
 
 func _on_player_bust() -> void:
+	Input.vibrate_handheld(72, 0.3)
 	hide_buttons()
 	Global.info_label = "Player busts"
 	await get_tree().create_timer(3).timeout
@@ -100,6 +102,7 @@ func _on_player_bust() -> void:
 	# house turn
 
 func _on_player_stand() -> void:
+	Input.vibrate_handheld(2)
 	hide_buttons()
 	Global.info_label = "Player stands"
 	await get_tree().create_timer(3).timeout
@@ -117,6 +120,7 @@ func _on_player_double_down() -> void:
 	pass
 
 func _on_player_blackjack() -> void:
+	Input.vibrate_handheld(100, 0.8)
 	Global.info_label = "Twentyone!"
 	hide_buttons()
 	await get_tree().create_timer(3).timeout
