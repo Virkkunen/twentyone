@@ -53,6 +53,7 @@ func face_down_card() -> void:
 
 func check_insurance():
 	if hand[0].card_rank == Card.CardRank.ACE:
+		Global.game_state = Global.GameStates.INSURANCE
 		Global.info_label = "Buy insurance?"
 		# show UI with button yes/no to buy insurance
 		# check rules for insurance

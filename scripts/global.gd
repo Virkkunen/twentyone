@@ -9,6 +9,21 @@ signal house_blackjack
 signal player_chips_changed
 signal pot_changed
 signal info_label_changed
+signal game_state_changed
+
+enum GameStates {PLAYER_TURN, HOUSE_TURN, BETTING, MENU, PAUSE, CALCULATING, SETUP, INSURANCE}
+
+@export var game_state : GameStates = GameStates.MENU:
+  get:
+    return game_state
+  set(value):
+    game_state = value
+    emit_signal("game_state_changed")
+    match game_state:
+      GameStates.PLAYER_TURN:
+        info_label = "Player turn"
+      GameStates.HOUSE_TURN:
+        info_label = "House turn"
 
 @export var player_total : int = 0:
   get:
@@ -53,7 +68,7 @@ signal info_label_changed
     player_chips = value
     emit_signal("player_chips_changed")
 
-@export var pot : int = 50:
+@export var pot : int = 0:
   get:
     return pot
   set(value):
@@ -80,5 +95,3 @@ signal info_label_changed
   set(value):
     info_label = value
     emit_signal("info_label_changed")
-
-@export var screen_size : Vector2

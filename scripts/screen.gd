@@ -7,6 +7,8 @@ extends CanvasLayer
 @onready var InfoLabel = $Control/MarginContainer/VBoxContainer/Center/InfoLabel
 
 func _ready() -> void:
+	
+
 	Global.player_total_changed.connect(_on_player_total_changed)
 	Global.house_total_changed.connect(_on_house_total_changed)
 	Global.player_chips_changed.connect(_on_player_chips_changed)
