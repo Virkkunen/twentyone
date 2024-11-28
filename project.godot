@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="twentyone"
-config/version="0.1.8"
+config/version="0.1.9"
 run/main_scene="res://scenes/BettingScene.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 boot_splash/bg_color=Color(0.0666667, 0.0666667, 0.105882, 1)

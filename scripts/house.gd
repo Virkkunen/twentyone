@@ -41,7 +41,6 @@ func display_card(card : Node2D) -> void:
 	Box.add_child(new_card)
 
 func face_down_card() -> void:
-	# var card = $CanvasLayer/Control/CenterContainer/HBoxContainer.get_child(1)
 	var card = Box.get_child(1)
 	var card_back = TextureRect.new()
 	var texture_back = load("res://assets/cards/card_back.png")

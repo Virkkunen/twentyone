@@ -5,13 +5,12 @@ extends Node2D
 @onready var House = $House
 @onready var PlayerVisibleHand = $Screen/Control/MarginContainer/VBoxContainer/PlayerHand/Cards
 @onready var HouseVisibleHand = $Screen/Control/MarginContainer/VBoxContainer/HouseHand/Cards
-# @onready var InfoLabel = $HUD/CanvasLayer/Control/MarginContainer/InfoLabel
-# @onready var InfoLabel = $Screen/Control/MarginContainer/VBoxContainer/Center/InfoLabel
-# @onready var Buttons = $HUD/PlayerCanvas/Control/PlayerHUD/VBoxContainer/Buttons
 @onready var Buttons = $Screen/Control/MarginContainer/VBoxContainer/Buttons
 @onready var ButtonHit = Buttons.get_node("ButtonHit")
 @onready var ButtonStand = Buttons.get_node("ButtonStand")
 @onready var ExtraButtons = $Screen/Control/MarginContainer/VBoxContainer/Buttons/ExtraButtons
+@onready var ButtonSplit = ExtraButtons.get_node("ButtonSplit")
+@onready var ButtonDoubleDown = ExtraButtons.get_node("ButtonDoubleDown")
 
 
 func _ready() -> void:
@@ -41,10 +40,12 @@ func initial_state() -> void:
 	House.total = 0
 	Deck.deck = []
 
-	Buttons.columns = 2
-	ExtraButtons.visible = false
-	ButtonHit.visible = true
-	ButtonStand.visible = true
+	ButtonHit.disabled = false
+	ButtonStand.disabled = false
+	ButtonSplit.disabled = true
+	ButtonDoubleDown.disabled = false
+
+	hide_house_score()
 
 	for child in PlayerVisibleHand.get_children():
 		queue_free()
@@ -61,7 +62,7 @@ func setup_game() -> void:
 	deal_cards(House, 2)
 	House.face_down_card() # hide the second card
 	hide_house_score()
-	House.check_insurance() # to check if house has blackjack
+	# House.check_insurance() # to check if house has blackjack
 	check_if_split()
 	# now the game starts
 	Global.game_state = Global.GameStates.PLAYER_TURN
@@ -74,29 +75,27 @@ func deal_cards(whose : Node2D, how_many_cards : int) -> void:
 		whose.display_card(card)
 	whose.calc_total()
 
-func hide_buttons() -> void:
-	var buttons_array = Buttons.get_children()
-	for button in buttons_array:
-		button.visible = false
-
+func disable_buttons() -> void:
+	ButtonHit.disabled = true
+	ButtonStand.disabled = true
+	ButtonSplit.disabled = true
+	ButtonDoubleDown.disabled = true
 ## PLAYER
 
 func check_if_split() -> void:
 	if Player.hand[0].card_rank == Player.hand[1].card_rank:
-		Buttons.columns = 3
-		ExtraButtons.visible = true
-		ExtraButtons.get_node("ButtonSplit").visible = true
+		ButtonSplit.disabled = false
 
 func _on_player_hit() -> void:
 	Input.vibrate_handheld(4)
 	Global.info_label = "Player hits"
 	deal_cards(Player, 1)
-	ExtraButtons.visible = false
-	Buttons.columns = 2
+	ButtonSplit.disabled = true
+	ButtonDoubleDown.disabled = true
 
 func _on_player_bust() -> void:
 	Input.vibrate_handheld(48, 0.3)
-	hide_buttons()
+	disable_buttons()
 	Global.info_label = "Player busts"
 	await get_tree().create_timer(3).timeout
 	house_start_turn()
@@ -104,9 +103,10 @@ func _on_player_bust() -> void:
 
 func _on_player_stand() -> void:
 	Input.vibrate_handheld(4)
-	hide_buttons()
+	disable_buttons()
 	Global.info_label = "Player stands"
 	await get_tree().create_timer(3).timeout
+	print("3 seconds stand")
 	house_start_turn()
 	# house turn
 
@@ -123,7 +123,7 @@ func _on_player_double_down() -> void:
 func _on_player_blackjack() -> void:
 	Input.vibrate_handheld(100, 0.8)
 	Global.info_label = "Twentyone!"
-	hide_buttons()
+	disable_buttons()
 	await get_tree().create_timer(3).timeout
 	house_start_turn()
 
@@ -140,20 +140,16 @@ func house_start_turn() -> void:
 	# this spaghetti removes the card back texture
 	$Screen/Control/MarginContainer/VBoxContainer/HouseHand/Cards.get_child(1).get_child(0).queue_free()
 	await get_tree().create_timer(2).timeout
-	#if Global.house_total < 17:
-		#_on_house_hit()
-	#else:
-		#_on_house_stand()
 	while Global.house_total < 17:
-		_on_house_hit()
-		await get_tree().create_timer(2).timeout
+		await _on_house_hit()
 
-	if not Global.house_busted:
+	if Global.house_total >= 17 and Global.house_total < 21:
 		_on_house_stand()
 
 func _on_house_hit() -> void:
 	Global.info_label = "House hits"
 	deal_cards(House, 1)
+	await get_tree().create_timer(2).timeout
 
 func _on_house_stand() -> void:
 	Global.info_label = "House stands"
@@ -163,12 +159,13 @@ func _on_house_stand() -> void:
 	# calc scores, restart game
 
 func _on_house_bust() -> void:
+	Global.info_label = "House busts"
 	await get_tree().create_timer(2.5).timeout
 	check_win()
 
 
 func _on_house_blackjack() -> void:
-	Global.info_label = "Blackjack!"
+	Global.info_label = "Twentyone!"
 	await get_tree().create_timer(2).timeout
 	check_win()
 
@@ -201,8 +198,11 @@ func check_win() -> void:
 	if player_won:
 		player_won = false
 		Global.info_label = "Player wins!"
+		await get_tree().create_timer(2).timeout
+
 		if Global.player_blackjacked:
 			multiplier = 3
+
 		payout = payout * multiplier
 		Global.info_label = "Payout: " + str(payout) + " chips"
 		Global.player_chips += payout

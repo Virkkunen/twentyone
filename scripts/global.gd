@@ -44,7 +44,7 @@ enum GameStates {PLAYER_TURN, HOUSE_TURN, BETTING, MENU, PAUSE, CALCULATING, SET
 		emit_signal("house_total_changed")
 		if house_total > 21:
 			house_busted = true
-		if house_total == 21:
+		elif house_total == 21:
 			house_blackjacked = true
 
 @export var player_busted : bool = false:
