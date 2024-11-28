@@ -90,6 +90,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_se6to")
+disabled = true
 text = "Reset
 "
 
@@ -99,6 +100,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_se6to")
+disabled = true
 text = "Accept
 "
 
@@ -111,7 +113,8 @@ theme = ExtResource("1_se6to")
 theme_override_colors/font_color = Color(0.952941, 0.545098, 0.658824, 1)
 theme_override_constants/outline_size = 32
 theme_override_font_sizes/font_size = 196
-text = "-"
+disabled = true
+text = "-1"
 
 [node name="ButtonIncrease" type="Button" parent="Screen/Control/MarginContainer/VBoxContainer/Buttons"]
 z_index = 10
@@ -122,4 +125,58 @@ theme = ExtResource("1_se6to")
 theme_override_colors/font_color = Color(0.65098, 0.890196, 0.631373, 1)
 theme_override_constants/outline_size = 32
 theme_override_font_sizes/font_size = 196
-text = "+"
+text = "+1"
+
+[node name="DecreasePresets" type="HBoxContainer" parent="Screen/Control/MarginContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+theme = ExtResource("1_se6to")
+
+[node name="ButtonDecrease10" type="Button" parent="Screen/Control/MarginContainer/VBoxContainer/Buttons/DecreasePresets"]
+z_index = 10
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_se6to")
+theme_override_colors/font_color = Color(0.952941, 0.545098, 0.658824, 1)
+theme_override_constants/outline_size = 32
+theme_override_font_sizes/font_size = 98
+disabled = true
+text = "-10"
+
+[node name="ButtonDecrease5" type="Button" parent="Screen/Control/MarginContainer/VBoxContainer/Buttons/DecreasePresets"]
+z_index = 10
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_se6to")
+theme_override_colors/font_color = Color(0.952941, 0.545098, 0.658824, 1)
+theme_override_constants/outline_size = 32
+theme_override_font_sizes/font_size = 98
+disabled = true
+text = "-5"
+
+[node name="IncreasePresets" type="HBoxContainer" parent="Screen/Control/MarginContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+theme = ExtResource("1_se6to")
+
+[node name="ButtonIncrease5" type="Button" parent="Screen/Control/MarginContainer/VBoxContainer/Buttons/IncreasePresets"]
+z_index = 10
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_se6to")
+theme_override_colors/font_color = Color(0.65098, 0.890196, 0.631373, 1)
+theme_override_constants/outline_size = 32
+theme_override_font_sizes/font_size = 98
+text = "+5"
+
+[node name="ButtonIncrease10" type="Button" parent="Screen/Control/MarginContainer/VBoxContainer/Buttons/IncreasePresets"]
+z_index = 10
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_se6to")
+theme_override_colors/font_color = Color(0.65098, 0.890196, 0.631373, 1)
+theme_override_constants/outline_size = 32
+theme_override_font_sizes/font_size = 98
+text = "+10"

@@ -7,7 +7,7 @@ content_margin_left = 12.0
 content_margin_top = 12.0
 content_margin_right = 12.0
 content_margin_bottom = 12.0
-bg_color = Color(0.576471, 0.6, 0.698039, 1)
+bg_color = Color(0.0666667, 0.0666667, 0.105882, 1)
 border_width_left = 8
 border_width_top = 8
 border_width_right = 8
@@ -85,7 +85,7 @@ anti_aliasing = false
 
 [resource]
 Button/colors/font_color = Color(0.803922, 0.839216, 0.956863, 1)
-Button/colors/font_disabled_color = Color(0.65098, 0.678431, 0.784314, 1)
+Button/colors/font_disabled_color = Color(0.192157, 0.196078, 0.266667, 1)
 Button/colors/font_focus_color = Color(0.803922, 0.839216, 0.956863, 1)
 Button/colors/font_hover_color = Color(0.803922, 0.839216, 0.956863, 1)
 Button/colors/font_hover_pressed_color = Color(0.729412, 0.760784, 0.870588, 1)
@@ -104,6 +104,7 @@ FlowContainer/constants/h_separation = 12
 FlowContainer/constants/v_separation = 12
 GridContainer/constants/h_separation = 36
 GridContainer/constants/v_separation = 36
+HBoxContainer/constants/separation = 24
 Label/colors/font_color = Color(0.803922, 0.839216, 0.956863, 1)
 Label/colors/font_outline_color = Color(0.0666667, 0.0666667, 0.105882, 1)
 Label/colors/font_shadow_color = Color(0.0666667, 0.0666667, 0.105882, 0.6)

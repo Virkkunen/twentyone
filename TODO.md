@@ -9,7 +9,6 @@
 - create menu
 	- play, help, credits
 - investigate why house busts then stands
-- jokers aren't part of the game
 - rewrite payout logic
 - android themed icon
 - better buttons maybe?

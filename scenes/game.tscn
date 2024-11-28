@@ -213,7 +213,7 @@ z_index = 3
 custom_minimum_size = Vector2(0, 256)
 layout_mode = 2
 size_flags_vertical = 3
-columns = 2
+columns = 3
 
 [node name="ButtonHit" type="Button" parent="Screen/Control/MarginContainer/VBoxContainer/Buttons"]
 z_index = 2
@@ -231,6 +231,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("7_82s7f")
+disabled = true
 text = "Split"
 
 [node name="ButtonDoubleDown" type="Button" parent="Screen/Control/MarginContainer/VBoxContainer/Buttons/ExtraButtons"]
@@ -238,6 +239,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("7_82s7f")
+disabled = true
 text = "Double Down"
 
 [node name="ButtonStand" type="Button" parent="Screen/Control/MarginContainer/VBoxContainer/Buttons"]
