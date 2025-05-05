@@ -11,8 +11,18 @@ config_version=5
 [application]
 
 config/name="twentyone"
+config/description="twentyone"
+run/main_scene="uid://vi3cwqdpyp3d"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://assets/icon.svg"
+config/icon="uid://ms4k437yabt0"
+
+[autoload]
+
+Global="*res://scripts/global.gd"
+
+[display]
+
+window/handheld/orientation=1
 
 [rendering]
 
