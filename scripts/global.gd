@@ -8,10 +8,24 @@ signal house_total_changed
 
 enum GameStates {
 	SETUP,
+	DEALING,
 	PLAYER_TURN,
 	HOUSE_TURN,
 	ROUND_OVER,
 	GAME_OVER
+}
+
+enum CardSuit {
+	CLUBS,
+	SPADES,
+	HEARTS,
+	DIAMONDS
+}
+
+enum CardRank {
+	ACE, TWO, THREE, FOUR, FIVE,
+	SIX, SEVEN, EIGHT, NINE,
+	TEN, JOKER, QUEEN, KING
 }
 
 @export var game_state : GameStates = GameStates.SETUP:

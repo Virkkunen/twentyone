@@ -1,34 +1,43 @@
-extends Node2D
+class_name Card extends Control
 
-enum CardSuit {
-	CLUBS,
-	SPADES,
-	HEARTS,
-	DIAMONDS
-}
+@onready var CardTexture : TextureRect = $CardTexture
 
-enum CardRank {
-	ACE, TWO, THREE, FOUR, FIVE,
-	SIX, SEVEN, EIGHT, NINE,
-	TEN, JOKER, QUEEN, KING
-}
-
-@export var card_suit : CardSuit
-@export var card_rank : CardRank
-@export var is_face : bool
+@export var card_suit : Global.CardSuit
+@export var card_rank : Global.CardRank
 @export var card_value : int
 
-func _ready() -> void:
-	check_if_face()
-	calc_value()
+func initialize(suit: Global.CardSuit, rank = Global.CardRank) -> void:
+	card_suit = suit
+	card_rank = rank
+	
+	_set_card_name()
+	_set_card_texture()
+	_calc_value()
 
-func calc_value() -> void:
-	if card_rank >= CardRank.TWO and card_rank <= CardRank.TEN:
-		card_value = card_rank + 1
-	elif is_face:
-		card_value = 10
+func _set_card_name() -> void:
+	var str_suit = str(Global.CardSuit.keys()[card_suit]).to_lower()
+	var str_rank = str(Global.CardRank.keys()[card_rank]).to_lower()
+	name = "%s of %s" % [str_rank, str_suit]
 
-func check_if_face() -> void:
+func _set_card_texture() -> void:
+	var str_suit = str(Global.CardSuit.keys()[card_suit]).to_lower()
+	var str_rank = str(Global.CardRank.keys()[card_rank]).to_lower()
+	var texture_path = "res://assets/cards/%s_%s.png" % [str_rank, str_suit]
+	var texture = load(texture_path)
+	CardTexture.texture = texture
+
+func _check_if_face() -> bool:
 	match card_rank:
-		CardRank.JOKER, CardRank.QUEEN, CardRank.KING:
-			is_face = true
+		Global.CardRank.JOKER, Global.CardRank.QUEEN, Global.CardRank.KING:
+			return true
+		_:
+			return false
+
+func _calc_value() -> void:
+	match card_rank:
+		Global.CardRank.ACE:
+			card_value = 11
+		Global. CardRank.TEN, Global.CardRank.JOKER, Global.CardRank.QUEEN, Global.CardRank.KING:
+			card_value = 10
+		_:
+			card_value = card_rank + 1
