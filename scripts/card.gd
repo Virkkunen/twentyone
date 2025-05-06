@@ -6,7 +6,7 @@ class_name Card extends Control
 @export var card_suit: Global.CardSuit
 @export var card_rank: Global.CardRank
 @export var card_value: int
-@export var card_flipped: bool = false
+@export var card_flipped := false
 
 func initialize(suit: Global.CardSuit, rank: Global.CardRank) -> void:
 	card_suit = suit
@@ -17,8 +17,8 @@ func initialize(suit: Global.CardSuit, rank: Global.CardRank) -> void:
 	_calc_value()
 
 func _set_card_name() -> void:
-	var str_suit = str(Global.CardSuit.keys()[card_suit]).to_lower()
-	var str_rank = str(Global.CardRank.keys()[card_rank]).to_lower()
+	var str_suit := str(Global.CardSuit.keys()[card_suit]).to_lower()
+	var str_rank := str(Global.CardRank.keys()[card_rank]).to_lower()
 	name = "%s of %s" % [str_rank, str_suit]
 
 func _set_card_texture() -> void:

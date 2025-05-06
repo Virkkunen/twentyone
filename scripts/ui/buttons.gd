@@ -21,6 +21,6 @@ func _on_game_state_changed() -> void:
 		Global.GameStates.PLAYER_TURN:
 			ButtonHit.disabled = false
 			ButtonStand.disabled = false
-		Global.GameStates.HOUSE_TURN:
+		Global.GameStates.HOUSE_TURN, Global.GameStates.WAITING:
 			ButtonHit.disabled = true
 			ButtonStand.disabled = true

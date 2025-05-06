@@ -2,7 +2,7 @@ class_name Deck extends Node
 
 const CardScene = preload("res://scenes/card.tscn")
 
-@export var deck : Array[Card] = []
+@export var deck: Array[Card] = []
 
 func _ready() -> void:
 	_create_deck()

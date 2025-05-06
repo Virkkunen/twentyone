@@ -127,6 +127,7 @@ script = ExtResource("11_kvpfn")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+disabled = true
 text = "HIT
 "
 
@@ -146,5 +147,6 @@ text = "Double"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+disabled = true
 text = "STAND
 "

@@ -6,7 +6,6 @@ var first_turn: bool = true
 
 func add_card_to_hand(card: Card) -> void:
 	hand.append(card)
-	calc_total()
 
 func calc_total() -> void:
 	var total = 0

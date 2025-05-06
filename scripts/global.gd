@@ -6,8 +6,7 @@ extends Node
 enum GameStates {
 	MENU,
 	SETUP,
-	DEALING,
-	CALCULATING,
+	WAITING,
 	PLAYER_TURN,
 	HOUSE_TURN,
 	ROUND_OVER,
@@ -16,6 +15,8 @@ enum GameStates {
 
 enum GameActions {
 	NONE,
+	DEALING,
+	CALCULATING,
 	PLAYER_HIT,
 	PLAYER_STAND,
 	PLAYER_BUST,
@@ -24,6 +25,13 @@ enum GameActions {
 	HOUSE_STAND,
 	HOUSE_BUST,
 	HOUSE_BLACKJACK
+}
+
+enum RoundWinner {
+	PLAYER,
+	HOUSE,
+	DRAW,
+	BUST
 }
 
 enum CardSuit {
@@ -44,19 +52,18 @@ enum CardRank {
 #
 signal game_state_changed
 signal game_action_changed
-signal pot_changed
 signal player_chips_changed
 signal player_total_changed
+signal player_blackjacked
 signal house_total_changed
+signal pot_changed
 signal centre_text_changed
+signal round_winner_changed
 
 @export var game_state: GameStates = GameStates.SETUP:
 	get: return game_state
 	set(value):
 		game_state = value
-		match game_state:
-			GameStates.DEALING:
-				centre_text = "Dealing cards..."
 		emit_signal("game_state_changed")
 		print("STATE: " + str(GameStates.keys()[game_state]))
 
@@ -67,7 +74,7 @@ signal centre_text_changed
 		emit_signal("game_action_changed")
 		print("ACTION: " + str(GameActions.keys()[game_action]))
 
-@export var pot: int = 0:
+@export var pot: int = 10:
 	get: return pot
 	set(value):
 		pot = value
@@ -94,15 +101,21 @@ signal centre_text_changed
 	set(value):
 		house_total = value
 		emit_signal("house_total_changed")
-		if house_total == 21:
-			game_action = GameActions.HOUSE_BLACKJACK
-		elif house_total > 21:
-			game_action = GameActions.HOUSE_BUST
-		elif house_total >= 17:
-			game_action = GameActions.HOUSE_STAND
 
 @export var centre_text: String = "twentyone":
 	get: return centre_text
 	set(value):
 		centre_text = value
 		emit_signal("centre_text_changed")
+
+@export var round_winner: RoundWinner:
+	get: return round_winner
+	set(value):
+		round_winner = value
+		emit_signal("round_winner_changed")
+
+@export var player_blackjack: bool = false:
+	get: return player_blackjack
+	set(value):
+		player_blackjack = value
+		emit_signal("player_blackjacked")
