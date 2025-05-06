@@ -1,0 +1,117 @@
+[gd_scene load_steps=8 format=3 uid="uid://ciom0ll5rmkhd"]
+
+[ext_resource type="Theme" uid="uid://b3f26mr56obgg" path="res://resources/base.tres" id="1_vjb58"]
+[ext_resource type="Script" uid="uid://yyy8e7152aa0" path="res://scripts/ui/safeAreaHandler.gd" id="2_con2f"]
+[ext_resource type="Texture2D" uid="uid://dfbou2341i20y" path="res://assets/cards/ace_diamonds.png" id="3_con2f"]
+[ext_resource type="Script" uid="uid://b731344l8g7cm" path="res://scripts/ui/buttonsMenu.gd" id="4_mhnvy"]
+
+[sub_resource type="Animation" id="Animation_con2f"]
+resource_name = "hover"
+length = 1.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.666667, 0.966667),
+"transitions": PackedFloat32Array(2, 0.5, 2, 0.5),
+"update": 0,
+"values": [Vector2(0, 126), Vector2(0, 150), Vector2(0, 150), Vector2(0, 126)]
+}
+
+[sub_resource type="Animation" id="Animation_mhnvy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 126)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ytvr"]
+_data = {
+&"RESET": SubResource("Animation_mhnvy"),
+&"hover": SubResource("Animation_con2f")
+}
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_vjb58")
+
+[node name="SafeMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_con2f")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SafeMargin"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="SafeMargin/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SafeMargin/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="SafeMargin/VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 86
+text = "twentyone"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="SafeMargin/VBoxContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(176, 256)
+layout_mode = 2
+
+[node name="AnimatedCard" type="Node2D" parent="SafeMargin/VBoxContainer/CenterContainer/VBoxContainer"]
+
+[node name="Card" type="TextureRect" parent="SafeMargin/VBoxContainer/CenterContainer/VBoxContainer/AnimatedCard"]
+offset_top = 126.0
+offset_right = 464.0
+offset_bottom = 800.909
+texture = ExtResource("3_con2f")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SafeMargin/VBoxContainer/CenterContainer/VBoxContainer/AnimatedCard/Card"]
+libraries = {
+&"": SubResource("AnimationLibrary_4ytvr")
+}
+autoplay = "hover"
+
+[node name="Buttons" type="VBoxContainer" parent="SafeMargin/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 80
+alignment = 1
+script = ExtResource("4_mhnvy")
+
+[node name="ButtonPlay" type="Button" parent="SafeMargin/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Play"
+
+[node name="ButtonExit" type="Button" parent="SafeMargin/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Exit"

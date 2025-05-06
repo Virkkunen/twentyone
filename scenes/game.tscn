@@ -73,9 +73,9 @@ text = "TOTAL: 21"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="HouseHand" type="HBoxContainer" parent="UI/SafeMargin/VBoxContainer/House"]
+[node name="HouseHand" type="FlowContainer" parent="UI/SafeMargin/VBoxContainer/House"]
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 3
 alignment = 1
 
 [node name="Spacer2" type="Panel" parent="UI/SafeMargin/VBoxContainer"]
@@ -107,7 +107,7 @@ layout_mode = 2
 text = "total: 21"
 horizontal_alignment = 1
 
-[node name="PlayerHand" type="HBoxContainer" parent="UI/SafeMargin/VBoxContainer/Player"]
+[node name="PlayerHand" type="FlowContainer" parent="UI/SafeMargin/VBoxContainer/Player"]
 layout_mode = 2
 size_flags_vertical = 6
 alignment = 1
@@ -117,9 +117,10 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
 [node name="Buttons" type="GridContainer" parent="UI/SafeMargin/VBoxContainer"]
-custom_minimum_size = Vector2(0, 256)
+custom_minimum_size = Vector2(0, 320)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/h_separation = 24
 columns = 3
 script = ExtResource("11_kvpfn")
 
@@ -127,16 +128,12 @@ script = ExtResource("11_kvpfn")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
 disabled = true
 text = "HIT
 "
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/SafeMargin/VBoxContainer/Buttons"]
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_constants/separation = 6
-
-[node name="ButtonDD" type="Button" parent="UI/SafeMargin/VBoxContainer/Buttons/VBoxContainer"]
+[node name="ButtonDD" type="Button" parent="UI/SafeMargin/VBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 36
@@ -147,6 +144,7 @@ text = "Double"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
 disabled = true
 text = "STAND
 "

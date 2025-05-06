@@ -13,7 +13,7 @@ config_version=5
 config/name="twentyone"
 config/description="twentyone"
 config/version="0.0.1"
-run/main_scene="uid://vi3cwqdpyp3d"
+run/main_scene="uid://ciom0ll5rmkhd"
 config/features=PackedStringArray("4.4", "Mobile")
 run/max_fps=30
 run/low_processor_mode=true
@@ -24,6 +24,7 @@ config/icon="uid://ms4k437yabt0"
 [autoload]
 
 Global="*res://scripts/global.gd"
+SceneTransition="*res://scenes/sceneTransition.tscn"
 
 [display]
 

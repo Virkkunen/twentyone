@@ -3,8 +3,8 @@ extends Node2D
 @onready var DeckNode: Node2D = $Deck
 @onready var PlayerNode: Node2D = $Player
 @onready var HouseNode: Node2D = $House
-@onready var PlayerHandContainer: HBoxContainer = $UI/SafeMargin/VBoxContainer/Player/PlayerHand
-@onready var HouseHandContainer: HBoxContainer = $UI/SafeMargin/VBoxContainer/House/HouseHand
+@onready var PlayerHandContainer: FlowContainer = $UI/SafeMargin/VBoxContainer/Player/PlayerHand
+@onready var HouseHandContainer: FlowContainer = $UI/SafeMargin/VBoxContainer/House/HouseHand
 
 func _ready() -> void:
 	Global.game_state_changed.connect(_on_game_state_changed)
