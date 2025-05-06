@@ -41,10 +41,10 @@ corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wvou7"]
 bg_color = Color(0.0941176, 0.0941176, 0.145098, 1)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 12
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(0.498039, 0.517647, 0.611765, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
@@ -60,6 +60,7 @@ Button/colors/font_color = Color(0.803922, 0.839216, 0.956863, 1)
 Button/colors/font_disabled_color = Color(0.498039, 0.517647, 0.611765, 1)
 Button/colors/font_focus_color = Color(0.803922, 0.839216, 0.956863, 1)
 Button/colors/font_hover_color = Color(0.803922, 0.839216, 0.956863, 1)
+Button/colors/font_hover_pressed_color = Color(0.498039, 0.517647, 0.611765, 1)
 Button/colors/font_outline_color = Color(0, 0, 0, 1)
 Button/colors/font_pressed_color = Color(0.498039, 0.517647, 0.611765, 1)
 Button/constants/h_separation = 100

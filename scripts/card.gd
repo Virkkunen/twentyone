@@ -1,12 +1,14 @@
 class_name Card extends Control
 
-@onready var CardTexture : TextureRect = $CardTexture
+@onready var CardTexture: TextureRect = $CardTexture
+@onready var CardBack: TextureRect = $CardBack
 
-@export var card_suit : Global.CardSuit
-@export var card_rank : Global.CardRank
-@export var card_value : int
+@export var card_suit: Global.CardSuit
+@export var card_rank: Global.CardRank
+@export var card_value: int
+@export var card_flipped: bool = false
 
-func initialize(suit: Global.CardSuit, rank = Global.CardRank) -> void:
+func initialize(suit: Global.CardSuit, rank: Global.CardRank) -> void:
 	card_suit = suit
 	card_rank = rank
 	
@@ -41,3 +43,7 @@ func _calc_value() -> void:
 			card_value = 10
 		_:
 			card_value = card_rank + 1
+
+func flip_card(back_visible: bool) -> void:
+	CardBack.visible = back_visible
+	card_flipped = back_visible

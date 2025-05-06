@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://vi3cwqdpyp3d"]
+[gd_scene load_steps=12 format=3 uid="uid://vi3cwqdpyp3d"]
 
 [ext_resource type="Script" uid="uid://bexfk3ixx2w0n" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://b8q2w36tce0hv" path="res://scripts/deck.gd" id="2_yqjtg"]
 [ext_resource type="Script" uid="uid://1iwamhp2rkjs" path="res://scripts/player.gd" id="3_lnu2h"]
 [ext_resource type="Script" uid="uid://xl044p8wv82w" path="res://scripts/house.gd" id="4_lbhrr"]
-[ext_resource type="Script" uid="uid://yyy8e7152aa0" path="res://scripts/safeAreaHandler.gd" id="5_iywne"]
+[ext_resource type="Script" uid="uid://yyy8e7152aa0" path="res://scripts/ui/safeAreaHandler.gd" id="5_iywne"]
 [ext_resource type="Theme" uid="uid://b3f26mr56obgg" path="res://resources/base.tres" id="5_p57ef"]
+[ext_resource type="Script" uid="uid://bp4q44hswxo38" path="res://scripts/ui/chipsAndPot.gd" id="7_gee14"]
+[ext_resource type="Script" uid="uid://c37xm4wwjf7y0" path="res://scripts/ui/playerUI.gd" id="8_0tnpc"]
+[ext_resource type="Script" uid="uid://c4x3dv8v5nqy6" path="res://scripts/ui/houseUI.gd" id="8_vtaks"]
+[ext_resource type="Script" uid="uid://bnvqr3qfyql6k" path="res://scripts/ui/centreUI.gd" id="9_vtaks"]
+[ext_resource type="Script" uid="uid://bff8dqpd5t20u" path="res://scripts/ui/buttons.gd" id="11_kvpfn"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_uwrxv")
@@ -43,14 +48,15 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_constants/separation = 295
 alignment = 1
+script = ExtResource("7_gee14")
 
 [node name="Chips" type="Label" parent="UI/SafeMargin/VBoxContainer/ChipsAndPot"]
 layout_mode = 2
-text = "CHIPS: 100"
+text = "CHIPS: 0"
 
 [node name="Pot" type="Label" parent="UI/SafeMargin/VBoxContainer/ChipsAndPot"]
 layout_mode = 2
-text = "POT: 100"
+text = "POT: 0"
 
 [node name="Spacer" type="Panel" parent="UI/SafeMargin/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
@@ -59,6 +65,7 @@ layout_mode = 2
 [node name="House" type="VBoxContainer" parent="UI/SafeMargin/VBoxContainer"]
 layout_mode = 2
 alignment = 1
+script = ExtResource("8_vtaks")
 
 [node name="HouseTotal" type="Label" parent="UI/SafeMargin/VBoxContainer/House"]
 layout_mode = 2
@@ -75,9 +82,16 @@ alignment = 1
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Center" type="MarginContainer" parent="UI/SafeMargin/VBoxContainer"]
+[node name="Centre" type="MarginContainer" parent="UI/SafeMargin/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("9_vtaks")
+
+[node name="CentreLabel" type="Label" parent="UI/SafeMargin/VBoxContainer/Centre"]
+layout_mode = 2
+text = "twentyone"
+horizontal_alignment = 1
+uppercase = true
 
 [node name="Spacer3" type="Panel" parent="UI/SafeMargin/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
@@ -86,6 +100,7 @@ layout_mode = 2
 [node name="Player" type="VBoxContainer" parent="UI/SafeMargin/VBoxContainer"]
 layout_mode = 2
 alignment = 1
+script = ExtResource("8_0tnpc")
 
 [node name="PlayerTotal" type="Label" parent="UI/SafeMargin/VBoxContainer/Player"]
 layout_mode = 2
@@ -106,6 +121,7 @@ custom_minimum_size = Vector2(0, 256)
 layout_mode = 2
 size_flags_vertical = 3
 columns = 3
+script = ExtResource("11_kvpfn")
 
 [node name="ButtonHit" type="Button" parent="UI/SafeMargin/VBoxContainer/Buttons"]
 layout_mode = 2
@@ -126,7 +142,7 @@ theme_override_font_sizes/font_size = 36
 disabled = true
 text = "Double"
 
-[node name="Button Stand" type="Button" parent="UI/SafeMargin/VBoxContainer/Buttons"]
+[node name="ButtonStand" type="Button" parent="UI/SafeMargin/VBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
