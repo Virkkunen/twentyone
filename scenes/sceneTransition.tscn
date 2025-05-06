@@ -1,54 +1,58 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1gnujv7tnx13"]
+[gd_scene load_steps=5 format=3 uid="uid://dc0mawogtlsu4"]
 
-[ext_resource type="Script" uid="uid://by0adicm7fy3t" path="res://scripts/ui/sceneTransition.gd" id="1_8yd64"]
+[ext_resource type="Script" uid="uid://bevts3yugy6i1" path="res://scripts/ui/sceneTransition.gd" id="1_8yd64"]
 
-[sub_resource type="Animation" id="Animation_gfr0b"]
+[sub_resource type="Animation" id="Animation_8yd64"]
 resource_name = "fade"
 length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(0.0666667, 0.0666667, 0.105882, 1)]
+"values": [Color(0.0666667, 0.0666667, 0.105882, 0), Color(0.0666667, 0.0666667, 0.105882, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_47dn4"]
+[sub_resource type="Animation" id="Animation_gfr0b"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(0.0666667, 0.0666667, 0.105882, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ax37j"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_47dn4"]
 _data = {
-&"RESET": SubResource("Animation_47dn4"),
-&"fade": SubResource("Animation_gfr0b")
+&"RESET": SubResource("Animation_gfr0b"),
+&"fade": SubResource("Animation_8yd64")
 }
 
-[node name="SceneTransition" type="ColorRect"]
+[node name="SceneTransition" type="CanvasLayer"]
+script = ExtResource("1_8yd64")
+
+[node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_8yd64")
+color = Color(0.0666667, 0.0666667, 0.105882, 0)
 
 [node name="Fade" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
-&"": SubResource("AnimationLibrary_ax37j")
+&"": SubResource("AnimationLibrary_47dn4")
 }

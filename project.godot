@@ -12,7 +12,7 @@ config_version=5
 
 config/name="twentyone"
 config/description="twentyone"
-config/version="0.0.1"
+config/version="0.1.0"
 run/main_scene="uid://ciom0ll5rmkhd"
 config/features=PackedStringArray("4.4", "Mobile")
 run/max_fps=30

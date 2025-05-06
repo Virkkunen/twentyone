@@ -91,7 +91,7 @@ func _on_player_bust() -> void:
 
 func _on_player_blackjack() -> void:
 	Global.centre_text = "twentyone!"
-	Global.player_blackjack == true
+	Global.player_blackjack = true
 
 #
 # House turn
@@ -143,9 +143,9 @@ func _on_round_over() -> void:
 	if Global.player_total > 21:
 		Global.round_winner = Global.RoundWinner.BUST
 	elif Global.house_total > 21:
-		Global.round_winner == Global.RoundWinner.PLAYER
+		Global.round_winner = Global.RoundWinner.PLAYER
 	elif Global.player_total == Global.house_total:
-		Global.round_winner == Global.RoundWinner.DRAW
+		Global.round_winner = Global.RoundWinner.DRAW
 	elif Global.player_total > Global.house_total:
 		Global.round_winner = Global.RoundWinner.PLAYER
 	else:
@@ -168,3 +168,5 @@ func _on_round_winner_changed() -> void:
 
 func _payout() -> void:
 	Global.player_chips += Global.pot
+	await get_tree().create_timer(4).timeout
+	SceneTransition.transition_to("res://scenes/menu.tscn")
