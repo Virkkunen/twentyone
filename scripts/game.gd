@@ -3,8 +3,9 @@ extends Node2D
 @onready var DeckNode: Node2D = $Deck
 @onready var PlayerNode: Node2D = $Player
 @onready var HouseNode: Node2D = $House
-@onready var PlayerHandContainer: FlowContainer = $UI/SafeMargin/VBoxContainer/Player/PlayerHand
-@onready var HouseHandContainer: FlowContainer = $UI/SafeMargin/VBoxContainer/House/HouseHand
+@onready var PlayerHandContainer: FlowContainer = $UI/Middle/Player/PlayerHand
+@onready var HouseHandContainer: FlowContainer = $UI/Middle/House/HouseHand
+@onready var CentreText: Label = $UI/Middle/Centre/CentreLabel
 
 func _ready() -> void:
 	Global.game_state_changed.connect(_on_game_state_changed)
@@ -53,7 +54,7 @@ func _setup_game() -> void:
 	HouseHandContainer.get_child(1).flip_card(true)
 
 	Global.game_state = Global.GameStates.PLAYER_TURN
-	Global.centre_text = "Your turn"
+	_change_info("Your turn", Global.ctp_blue)
 
 func _deal_cards(side: Node2D, count: int) -> void:
 	Global.game_action = Global.GameActions.DEALING
@@ -68,36 +69,45 @@ func _deal_cards(side: Node2D, count: int) -> void:
 			HouseHandContainer.add_child(card)
 	side.calc_total()
 
+func _change_info(text: String, colour: String = "#cdd6f4") -> void:
+	Global.centre_text = text
+	CentreText.add_theme_color_override("font_color", colour)
+
 #
 # Player turn
 #
 func _on_player_hit() -> void:
-	Global.centre_text = "Hit"
+	_change_info("You hit", Global.ctp_lavender)
 	_deal_cards(PlayerNode, 1)
 
 func _on_player_stand() -> void:
-	Global.centre_text = "Stand"
+	_change_info("You stand", Global.ctp_yellow)
 	Global.game_state = Global.GameStates.WAITING
 	Global.game_action = Global.GameActions.NONE
 	await get_tree().create_timer(2).timeout
 	Global.game_state = Global.GameStates.HOUSE_TURN
 
 func _on_player_bust() -> void:
-	Global.centre_text = "Bust!"
+	Input.vibrate_handheld(5, 0.8)
+	_change_info("Bust!", Global.ctp_maroon)
 	Global.game_state = Global.GameStates.WAITING
 	Global.game_action = Global.GameActions.NONE
 	await get_tree().create_timer(2).timeout
 	Global.game_state = Global.GameStates.HOUSE_TURN
 
 func _on_player_blackjack() -> void:
-	Global.centre_text = "twentyone!"
+	_change_info("twentyone!", Global.ctp_green)
 	Global.player_blackjack = true
+	Global.game_state = Global.GameStates.WAITING
+	Global.game_action = Global.GameActions.NONE
+	await get_tree().create_timer(2).timeout
+	Global.game_state = Global.GameStates.HOUSE_TURN
 
 #
 # House turn
 #
 func _house_turn() -> void:
-	Global.centre_text = "House turn"
+	_change_info("House turn")
 	Global.game_action = Global.GameActions.NONE
 	if HouseNode.first_turn and Global.game_state == Global.GameStates.HOUSE_TURN:
 		HouseNode.first_turn = false
@@ -117,21 +127,21 @@ func _on_house_total_changed() -> void:
 			Global.game_action = Global.GameActions.HOUSE_HIT
 
 func _on_house_hit() -> void:
-	Global.centre_text = "House Hits"
+	_change_info("house hits")
 	_deal_cards(HouseNode, 1)
 
 func _on_house_bust() -> void:
-	Global.centre_text = "House Busts!"
+	_change_info("house busts!", Global.ctp_maroon)
 	await get_tree().create_timer(2).timeout
 	Global.game_state = Global.GameStates.ROUND_OVER
 
 func _on_house_stand() -> void:
-	Global.centre_text = "House stands"
+	_change_info("house stands", Global.ctp_yellow)
 	await get_tree().create_timer(2).timeout
 	Global.game_state = Global.GameStates.ROUND_OVER
 
 func _on_house_blackjack() -> void:
-	Global.centre_text = "House gets a twentyone!"
+	_change_info("House gets a twentyone!", Global.ctp_green)
 	await get_tree().create_timer(2).timeout
 	Global.game_state = Global.GameStates.ROUND_OVER
 
@@ -157,12 +167,12 @@ func _on_round_winner_changed() -> void:
 			Global.pot *= 1.5
 			if Global.player_blackjack:
 				Global.pot *= 2
-			Global.centre_text = "You win! Payout: %s" % [Global.pot]
+			_change_info("You win! Payout: %s" % [Global.pot], Global.ctp_green)
 		Global.RoundWinner.HOUSE, Global.RoundWinner.BUST:
 			Global.pot = 0
-			Global.centre_text = "You lose!"
+			_change_info("You lose!", Global.ctp_red)
 		Global.RoundWinner.DRAW:
-			Global.centre_text = "It's a draw"
+			_change_info("It's a draw", Global.ctp_yellow)
 	await get_tree().create_timer(2).timeout
 	if not _check_if_game_over():
 		_payout()
@@ -182,14 +192,14 @@ func _check_if_game_over() -> bool:
 func _payout() -> void:
 	Global.player_chips += Global.pot
 	Global.pot = 0
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(2.5).timeout
 	SceneTransition.transition_to("res://scenes/betting.tscn")
 
 func _game_over() -> void:
 	Global.pot = 0
-	Global.centre_text = "Game over :("
+	_change_info("Game over :(", Global.ctp_red)
 	await get_tree().create_timer(2).timeout
-	Global.centre_text = "The game was rigged from the start"
+	_change_info("The game was rigged\nfrom the start", Global.ctp_red)
 	await get_tree().create_timer(2).timeout
 	Global.player_chips = 50
 	SceneTransition.transition_to("res://scenes/menu.tscn")

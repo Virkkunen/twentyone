@@ -4,24 +4,23 @@
 [ext_resource type="Texture2D" uid="uid://bnppqr10u8qm2" path="res://assets/cards/card_back.png" id="2_ktuci"]
 
 [node name="Card" type="Control"]
-custom_minimum_size = Vector2(176, 256)
+custom_minimum_size = Vector2(110, 160)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_6u4wf")
 
 [node name="CardTexture" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(22, 32)
+custom_minimum_size = Vector2(110, 160)
 layout_mode = 0
 offset_right = 22.0
 offset_bottom = 32.0
-scale = Vector2(8, 8)
 texture = ExtResource("2_ktuci")
+expand_mode = 3
 
 [node name="CardBack" type="TextureRect" parent="."]
 visible = false
-custom_minimum_size = Vector2(22, 32)
+custom_minimum_size = Vector2(110, 160)
 layout_mode = 0
 offset_right = 22.0
 offset_bottom = 32.0
-scale = Vector2(8, 8)
 texture = ExtResource("2_ktuci")

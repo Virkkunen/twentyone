@@ -47,6 +47,14 @@ enum CardRank {
 	TEN, JOKER, QUEEN, KING
 }
 
+@export var ctp_text: String = "#cdd6f4"
+@export var ctp_lavender: String = "#b4befe"
+@export var ctp_red: String = "#f38ba8"
+@export var ctp_maroon: String = "#eba0ac"
+@export var ctp_yellow: String = "#f9e2af"
+@export var ctp_blue: String = "#89b4fa"
+@export var ctp_green: String = "#a6e3a1"
+
 #
 # Signals
 #

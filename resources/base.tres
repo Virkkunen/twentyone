@@ -93,7 +93,7 @@ corner_detail = 4
 
 [resource]
 default_font = ExtResource("1_2xhlc")
-default_font_size = 48
+default_font_size = 32
 Button/colors/font_color = Color(0.803922, 0.839216, 0.956863, 1)
 Button/colors/font_disabled_color = Color(0.192157, 0.196078, 0.266667, 1)
 Button/colors/font_focus_color = Color(0.803922, 0.839216, 0.956863, 1)
@@ -103,7 +103,7 @@ Button/colors/font_outline_color = Color(0, 0, 0, 1)
 Button/colors/font_pressed_color = Color(0.498039, 0.517647, 0.611765, 1)
 Button/constants/h_separation = 100
 Button/constants/line_spacing = 0
-Button/font_sizes/font_size = 48
+Button/font_sizes/font_size = 32
 Button/fonts/font = ExtResource("1_2xhlc")
 Button/icons/icon = null
 Button/styles/disabled = SubResource("StyleBoxFlat_vejmy")

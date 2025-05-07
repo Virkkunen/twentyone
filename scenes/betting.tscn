@@ -2,131 +2,157 @@
 
 [ext_resource type="Script" uid="uid://yyy8e7152aa0" path="res://scripts/ui/safeAreaHandler.gd" id="1_qidjw"]
 [ext_resource type="FontFile" uid="uid://crwae5t23lklj" path="res://assets/fonts/HomeVideoBold-R90Dv.ttf" id="2_bj2rl"]
-[ext_resource type="Script" uid="uid://dk5ir5nt6woka" path="res://scripts/ui/betButtons.gd" id="2_o44lc"]
 [ext_resource type="Script" uid="uid://n85ht4fw1ym2" path="res://scripts/ui/betLabels.gd" id="3_oun1i"]
+[ext_resource type="Script" uid="uid://bw2f3fo0g0rsf" path="res://scripts/ui/betButtons.gd" id="4_oun1i"]
 
 [node name="Betting" type="CanvasLayer"]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 116.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -173.0
+offset_right = 173.0
+offset_bottom = 179.0
 grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_qidjw")
 
-[node name="Label" type="Label" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="MenuSpacer" type="Panel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+
+[node name="TwentyOne" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("2_bj2rl")
-theme_override_font_sizes/font_size = 128
+theme_override_font_sizes/font_size = 64
 text = "twentyone"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = ".v"
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
-offset_right = 1080.0
-offset_bottom = 1920.0
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -290.0
+offset_bottom = -107.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="BetLabels" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
+alignment = 1
 script = ExtResource("3_oun1i")
 
 [node name="BettingChipsLabel" type="Label" parent="CenterContainer/BetLabels"]
 layout_mode = 2
 text = "Chips: 100
 "
-horizontal_alignment = 1
+horizontal_alignment = 3
+vertical_alignment = 3
 
 [node name="BettingPotLabel" type="Label" parent="CenterContainer/BetLabels"]
 layout_mode = 2
 text = "POT: 100"
-horizontal_alignment = 1
+horizontal_alignment = 3
+vertical_alignment = 3
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
+[node name="ButtonsMargin" type="MarginContainer" parent="."]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -456.0
+offset_left = 88.0
+offset_top = -536.0
+offset_right = 88.0
+offset_bottom = 168.0
 grow_horizontal = 2
 grow_vertical = 0
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 256
-theme_override_constants/margin_right = 256
-theme_override_constants/margin_bottom = 128
+scale = Vector2(0.75, 0.75)
 
-[node name="BetButtons" type="FlowContainer" parent="MarginContainer2"]
+[node name="BetButtons" type="GridContainer" parent="ButtonsMargin"]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 2
+script = ExtResource("4_oun1i")
+
+[node name="Minus" type="VBoxContainer" parent="ButtonsMargin/BetButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/h_separation = 28
-theme_override_constants/v_separation = 28
-alignment = 1
-script = ExtResource("2_o44lc")
-
-[node name="Minus" type="VBoxContainer" parent="MarginContainer2/BetButtons"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 28
+size_flags_vertical = 4
+theme_override_constants/separation = 12
 alignment = 1
 
-[node name="ButtonMinusOne" type="Button" parent="MarginContainer2/BetButtons/Minus"]
+[node name="ButtonMinusOne" type="Button" parent="ButtonsMargin/BetButtons/Minus"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.952941, 0.545098, 0.658824, 1)
 disabled = true
 text = "-1"
 
-[node name="ButtonMinusFive" type="Button" parent="MarginContainer2/BetButtons/Minus"]
+[node name="ButtonMinusFive" type="Button" parent="ButtonsMargin/BetButtons/Minus"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.952941, 0.545098, 0.658824, 1)
 disabled = true
 text = "-5"
 
-[node name="ButtonMinusTen" type="Button" parent="MarginContainer2/BetButtons/Minus"]
+[node name="ButtonMinusTen" type="Button" parent="ButtonsMargin/BetButtons/Minus"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.952941, 0.545098, 0.658824, 1)
 disabled = true
 text = "-10"
 
-[node name="Plus" type="VBoxContainer" parent="MarginContainer2/BetButtons"]
+[node name="Plus" type="VBoxContainer" parent="ButtonsMargin/BetButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 28
+size_flags_vertical = 4
+theme_override_constants/separation = 12
 alignment = 1
 
-[node name="ButtonPlusOne" type="Button" parent="MarginContainer2/BetButtons/Plus"]
+[node name="ButtonPlusOne" type="Button" parent="ButtonsMargin/BetButtons/Plus"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.65098, 0.890196, 0.631373, 1)
 disabled = true
 text = "+1"
 
-[node name="ButtonPlusFive" type="Button" parent="MarginContainer2/BetButtons/Plus"]
+[node name="ButtonPlusFive" type="Button" parent="ButtonsMargin/BetButtons/Plus"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.65098, 0.890196, 0.631373, 1)
 disabled = true
 text = "+5"
 
-[node name="ButtonPlusTen" type="Button" parent="MarginContainer2/BetButtons/Plus"]
+[node name="ButtonPlusTen" type="Button" parent="ButtonsMargin/BetButtons/Plus"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.65098, 0.890196, 0.631373, 1)
 disabled = true
 text = "+10"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/BetButtons"]
+[node name="ButtonReset" type="Button" parent="ButtonsMargin/BetButtons"]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 28
-alignment = 1
-
-[node name="ButtonReset" type="Button" parent="MarginContainer2/BetButtons/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.796078, 0.65098, 0.968627, 1)
 disabled = true
 text = "Reset"
 
-[node name="ButtonPlay" type="Button" parent="MarginContainer2/BetButtons/HBoxContainer"]
+[node name="ButtonPlay" type="Button" parent="ButtonsMargin/BetButtons"]
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.537255, 0.705882, 0.980392, 1)
 disabled = true
 text = "play"

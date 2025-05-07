@@ -44,28 +44,43 @@ _data = {
 
 [node name="Menu" type="CanvasLayer"]
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 57.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -173.0
+offset_right = 173.0
+offset_bottom = 179.0
 grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("2_con2f")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
 
-[node name="Panel" type="Panel" parent="MarginContainer2/VBoxContainer"]
+[node name="MenuSpacer" type="Panel" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("3_4ytvr")
-theme_override_font_sizes/font_size = 128
+theme_override_font_sizes/font_size = 64
 text = "twentyone"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "v0.3.0"
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15
@@ -75,7 +90,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Card" type="TextureRect" parent="CenterContainer"]
-custom_minimum_size = Vector2(440, 640)
+custom_minimum_size = Vector2(110, 160)
 layout_mode = 2
 texture = ExtResource("3_con2f")
 expand_mode = 5
@@ -87,7 +102,7 @@ libraries = {
 }
 autoplay = "hover"
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer2" type="MarginContainer" parent="."]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -95,22 +110,23 @@ anchor_bottom = 1.0
 offset_top = -552.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/margin_left = 256
-theme_override_constants/margin_right = 256
-theme_override_constants/margin_bottom = 128
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 128
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer2"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/separation = 72
+theme_override_constants/separation = 24
+alignment = 1
 script = ExtResource("4_mhnvy")
 
-[node name="ButtonPlay" type="Button" parent="MarginContainer/VBoxContainer2"]
+[node name="ButtonPlay" type="Button" parent="MarginContainer2/VBoxContainer2"]
 layout_mode = 2
 text = "play
 "
 
-[node name="ButtonExit" type="Button" parent="MarginContainer/VBoxContainer2"]
+[node name="ButtonExit" type="Button" parent="MarginContainer2/VBoxContainer2"]
 layout_mode = 2
 text = "exit
 "

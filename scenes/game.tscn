@@ -25,10 +25,11 @@ script = ExtResource("3_lnu2h")
 [node name="House" type="Node2D" parent="."]
 script = ExtResource("4_lbhrr")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UIbkp" type="CanvasLayer" parent="."]
+visible = false
 follow_viewport_enabled = true
 
-[node name="SafeMargin" type="MarginContainer" parent="UI"]
+[node name="SafeMargin" type="MarginContainer" parent="UIbkp"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -39,85 +40,85 @@ size_flags_vertical = 3
 theme = ExtResource("5_p57ef")
 script = ExtResource("5_iywne")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/SafeMargin"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UIbkp/SafeMargin"]
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="ChipsAndPot" type="HBoxContainer" parent="UI/SafeMargin/VBoxContainer"]
+[node name="ChipsAndPot" type="HBoxContainer" parent="UIbkp/SafeMargin/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_constants/separation = 295
 alignment = 1
 script = ExtResource("7_gee14")
 
-[node name="Chips" type="Label" parent="UI/SafeMargin/VBoxContainer/ChipsAndPot"]
+[node name="Chips" type="Label" parent="UIbkp/SafeMargin/VBoxContainer/ChipsAndPot"]
 layout_mode = 2
 text = "CHIPS: 0"
 
-[node name="Pot" type="Label" parent="UI/SafeMargin/VBoxContainer/ChipsAndPot"]
+[node name="Pot" type="Label" parent="UIbkp/SafeMargin/VBoxContainer/ChipsAndPot"]
 layout_mode = 2
 text = "POT: 0"
 
-[node name="Spacer" type="Panel" parent="UI/SafeMargin/VBoxContainer"]
+[node name="Spacer" type="Panel" parent="UIbkp/SafeMargin/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 
-[node name="House" type="VBoxContainer" parent="UI/SafeMargin/VBoxContainer"]
+[node name="House" type="VBoxContainer" parent="UIbkp/SafeMargin/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 script = ExtResource("8_vtaks")
 
-[node name="HouseTotal" type="Label" parent="UI/SafeMargin/VBoxContainer/House"]
+[node name="HouseTotal" type="Label" parent="UIbkp/SafeMargin/VBoxContainer/House"]
 layout_mode = 2
 text = "TOTAL: 21"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="HouseHand" type="FlowContainer" parent="UI/SafeMargin/VBoxContainer/House"]
+[node name="HouseHand" type="FlowContainer" parent="UIbkp/SafeMargin/VBoxContainer/House"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Spacer2" type="Panel" parent="UI/SafeMargin/VBoxContainer"]
+[node name="Spacer2" type="Panel" parent="UIbkp/SafeMargin/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Centre" type="MarginContainer" parent="UI/SafeMargin/VBoxContainer"]
+[node name="Centre" type="MarginContainer" parent="UIbkp/SafeMargin/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("9_vtaks")
 
-[node name="CentreLabel" type="Label" parent="UI/SafeMargin/VBoxContainer/Centre"]
+[node name="CentreLabel" type="Label" parent="UIbkp/SafeMargin/VBoxContainer/Centre"]
 layout_mode = 2
 text = "twentyone"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="Spacer3" type="Panel" parent="UI/SafeMargin/VBoxContainer"]
+[node name="Spacer3" type="Panel" parent="UIbkp/SafeMargin/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Player" type="VBoxContainer" parent="UI/SafeMargin/VBoxContainer"]
+[node name="Player" type="VBoxContainer" parent="UIbkp/SafeMargin/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 script = ExtResource("8_0tnpc")
 
-[node name="PlayerTotal" type="Label" parent="UI/SafeMargin/VBoxContainer/Player"]
+[node name="PlayerTotal" type="Label" parent="UIbkp/SafeMargin/VBoxContainer/Player"]
 layout_mode = 2
 text = "total: 21"
 horizontal_alignment = 1
 
-[node name="PlayerHand" type="FlowContainer" parent="UI/SafeMargin/VBoxContainer/Player"]
+[node name="PlayerHand" type="FlowContainer" parent="UIbkp/SafeMargin/VBoxContainer/Player"]
 layout_mode = 2
 size_flags_vertical = 6
 alignment = 1
 
-[node name="Spacer5" type="Panel" parent="UI/SafeMargin/VBoxContainer"]
+[node name="Spacer5" type="Panel" parent="UIbkp/SafeMargin/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Buttons" type="GridContainer" parent="UI/SafeMargin/VBoxContainer"]
+[node name="Buttons" type="GridContainer" parent="UIbkp/SafeMargin/VBoxContainer"]
 custom_minimum_size = Vector2(0, 320)
 layout_mode = 2
 size_flags_vertical = 6
@@ -125,7 +126,7 @@ theme_override_constants/h_separation = 24
 columns = 3
 script = ExtResource("11_kvpfn")
 
-[node name="ButtonHit" type="Button" parent="UI/SafeMargin/VBoxContainer/Buttons"]
+[node name="ButtonHit" type="Button" parent="UIbkp/SafeMargin/VBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -134,18 +135,176 @@ disabled = true
 text = "HIT
 "
 
-[node name="ButtonDD" type="Button" parent="UI/SafeMargin/VBoxContainer/Buttons"]
+[node name="ButtonDD" type="Button" parent="UIbkp/SafeMargin/VBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 36
 disabled = true
 text = "Double"
 
-[node name="ButtonStand" type="Button" parent="UI/SafeMargin/VBoxContainer/Buttons"]
+[node name="ButtonStand" type="Button" parent="UIbkp/SafeMargin/VBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
+disabled = true
+text = "STAND
+"
+
+[node name="UI" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="SafeMargin" type="MarginContainer" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -287.0
+offset_right = 287.0
+offset_bottom = 50.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("5_p57ef")
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 0
+script = ExtResource("5_iywne")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/SafeMargin"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="MenuSpacer" type="Panel" parent="UI/SafeMargin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+
+[node name="ChipsAndPot" type="HBoxContainer" parent="UI/SafeMargin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 12
+alignment = 1
+script = ExtResource("7_gee14")
+
+[node name="Chips" type="Label" parent="UI/SafeMargin/VBoxContainer/ChipsAndPot"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "CHIPS: 0"
+
+[node name="Pot" type="Label" parent="UI/SafeMargin/VBoxContainer/ChipsAndPot"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "POT: 0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Middle" type="VBoxContainer" parent="UI"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -183.0
+offset_bottom = 183.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="House" type="VBoxContainer" parent="UI/Middle"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+script = ExtResource("8_vtaks")
+
+[node name="HouseTotal" type="Label" parent="UI/Middle/House"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "TOTAL: 21"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HouseHand" type="FlowContainer" parent="UI/Middle/House"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Centre" type="MarginContainer" parent="UI/Middle"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("9_vtaks")
+
+[node name="CentreLabel" type="Label" parent="UI/Middle/Centre"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.705882, 0.745098, 0.996078, 1)
+theme_override_font_sizes/font_size = 32
+text = "twentyone"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Player" type="VBoxContainer" parent="UI/Middle"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+script = ExtResource("8_0tnpc")
+
+[node name="PlayerTotal" type="Label" parent="UI/Middle/Player"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "total: 21"
+horizontal_alignment = 1
+
+[node name="PlayerHand" type="FlowContainer" parent="UI/Middle/Player"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -261.0
+offset_top = -150.0
+offset_right = 435.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_right = 24
+
+[node name="Buttons" type="GridContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 24
+columns = 2
+script = ExtResource("11_kvpfn")
+
+[node name="ButtonHit" type="Button" parent="UI/MarginContainer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.3
+theme_override_colors/font_color = Color(0.537255, 0.705882, 0.980392, 1)
+disabled = true
+text = "HIT
+"
+
+[node name="ButtonDD" type="Button" parent="UI/MarginContainer/Buttons"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+theme_override_font_sizes/font_size = 24
+disabled = true
+text = "Double"
+
+[node name="ButtonStand" type="Button" parent="UI/MarginContainer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.3
+theme_override_colors/font_color = Color(0.976471, 0.886275, 0.686275, 1)
 disabled = true
 text = "STAND
 "
