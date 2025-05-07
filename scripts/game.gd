@@ -164,9 +164,33 @@ func _on_round_winner_changed() -> void:
 		Global.RoundWinner.DRAW:
 			Global.centre_text = "It's a draw"
 	await get_tree().create_timer(2).timeout
-	_payout()
+	if not _check_if_game_over():
+		_payout()
+	else:
+		_game_over()
+
+func _check_if_game_over() -> bool:
+	if Global.player_chips > 0:
+		return false
+
+	var lost_outcomes := [Global.RoundWinner.HOUSE, Global.RoundWinner.BUST]
+	if Global.round_winner in lost_outcomes:
+		return true
+
+	return false
 
 func _payout() -> void:
 	Global.player_chips += Global.pot
-	await get_tree().create_timer(4).timeout
+	Global.pot = 0
+	await get_tree().create_timer(3).timeout
+	SceneTransition.transition_to("res://scenes/betting.tscn")
+
+func _game_over() -> void:
+	Global.pot = 0
+	Global.centre_text = "Game over :("
+	await get_tree().create_timer(2).timeout
+	Global.centre_text = "The game was rigged from the start"
+	await get_tree().create_timer(2).timeout
+	Global.player_chips = 50
 	SceneTransition.transition_to("res://scenes/menu.tscn")
+	# add a first round variable

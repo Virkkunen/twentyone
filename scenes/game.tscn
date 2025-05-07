@@ -41,6 +41,7 @@ script = ExtResource("5_iywne")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/SafeMargin"]
 layout_mode = 2
+theme_override_constants/separation = 0
 alignment = 1
 
 [node name="ChipsAndPot" type="HBoxContainer" parent="UI/SafeMargin/VBoxContainer"]
@@ -59,7 +60,7 @@ layout_mode = 2
 text = "POT: 0"
 
 [node name="Spacer" type="Panel" parent="UI/SafeMargin/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 
 [node name="House" type="VBoxContainer" parent="UI/SafeMargin/VBoxContainer"]
@@ -119,7 +120,7 @@ layout_mode = 2
 [node name="Buttons" type="GridContainer" parent="UI/SafeMargin/VBoxContainer"]
 custom_minimum_size = Vector2(0, 320)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 6
 theme_override_constants/h_separation = 24
 columns = 3
 script = ExtResource("11_kvpfn")

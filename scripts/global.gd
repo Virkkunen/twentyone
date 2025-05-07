@@ -74,7 +74,7 @@ signal round_winner_changed
 		emit_signal("game_action_changed")
 		print("ACTION: " + str(GameActions.keys()[game_action]))
 
-@export var pot: int = 10:
+@export var pot: int = 0:
 	get: return pot
 	set(value):
 		pot = value

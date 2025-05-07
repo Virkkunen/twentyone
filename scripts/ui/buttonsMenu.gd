@@ -8,7 +8,7 @@ func _ready() -> void:
 	ButtonExit.pressed.connect(_on_button_exit)
 
 func _on_button_play() -> void:
-	SceneTransition.transition_to("res://scenes/game.tscn")
+	SceneTransition.transition_to("res://scenes/betting.tscn")
 
 func _on_button_exit() -> void:
 	get_tree().quit()
