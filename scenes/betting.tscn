@@ -79,13 +79,13 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 88.0
-offset_top = -536.0
-offset_right = 88.0
-offset_bottom = 168.0
+offset_top = -430.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(0.75, 0.75)
+size_flags_vertical = 3
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 24
 
 [node name="BetButtons" type="GridContainer" parent="ButtonsMargin"]
 layout_mode = 2
@@ -97,24 +97,27 @@ script = ExtResource("4_oun1i")
 [node name="Minus" type="VBoxContainer" parent="ButtonsMargin/BetButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
+size_flags_vertical = 3
 theme_override_constants/separation = 12
 alignment = 1
 
 [node name="ButtonMinusOne" type="Button" parent="ButtonsMargin/BetButtons/Minus"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.952941, 0.545098, 0.658824, 1)
 disabled = true
 text = "-1"
 
 [node name="ButtonMinusFive" type="Button" parent="ButtonsMargin/BetButtons/Minus"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.952941, 0.545098, 0.658824, 1)
 disabled = true
 text = "-5"
 
 [node name="ButtonMinusTen" type="Button" parent="ButtonsMargin/BetButtons/Minus"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.952941, 0.545098, 0.658824, 1)
 disabled = true
 text = "-10"
@@ -122,36 +125,41 @@ text = "-10"
 [node name="Plus" type="VBoxContainer" parent="ButtonsMargin/BetButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
+size_flags_vertical = 3
 theme_override_constants/separation = 12
 alignment = 1
 
 [node name="ButtonPlusOne" type="Button" parent="ButtonsMargin/BetButtons/Plus"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.65098, 0.890196, 0.631373, 1)
 disabled = true
 text = "+1"
 
 [node name="ButtonPlusFive" type="Button" parent="ButtonsMargin/BetButtons/Plus"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.65098, 0.890196, 0.631373, 1)
 disabled = true
 text = "+5"
 
 [node name="ButtonPlusTen" type="Button" parent="ButtonsMargin/BetButtons/Plus"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.65098, 0.890196, 0.631373, 1)
 disabled = true
 text = "+10"
 
 [node name="ButtonReset" type="Button" parent="ButtonsMargin/BetButtons"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.796078, 0.65098, 0.968627, 1)
 disabled = true
 text = "Reset"
 
 [node name="ButtonPlay" type="Button" parent="ButtonsMargin/BetButtons"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.537255, 0.705882, 0.980392, 1)
 disabled = true
 text = "play"

@@ -1,5 +1,7 @@
 class_name Player extends Node2D
 
+@onready var HandContainer = $/root/Game/UI/Middle/Player/PlayerHand
+
 @export var hand: Array[Card] = []
 
 func _ready() -> void:
@@ -7,6 +9,7 @@ func _ready() -> void:
 
 func add_card_to_hand(card: Card) -> void:
 	hand.append(card)
+	HandContainer.add_child(card)
 
 func calc_total() -> void:
 	Global.game_action = Global.GameActions.CALCULATING

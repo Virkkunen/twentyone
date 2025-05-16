@@ -6,6 +6,9 @@ extends Node2D
 @onready var PlayerHandContainer: FlowContainer = $UI/Middle/Player/PlayerHand
 @onready var HouseHandContainer: FlowContainer = $UI/Middle/House/HouseHand
 @onready var CentreText: Label = $UI/Middle/Centre/CentreLabel
+@onready var CardAnim: AnimationPlayer = $UI/CardAnimControl/CardAnim
+
+var first_round = true
 
 func _ready() -> void:
 	Global.game_state_changed.connect(_on_game_state_changed)
@@ -45,15 +48,17 @@ func _on_game_action_changed() -> void:
 			pass
 
 func _setup_game() -> void:
+	first_round = true
+	Global.player_blackjack = false
 	Global.player_chips = Global.player_chips
 	Global.pot = Global.pot
 
-	Global.game_action = Global.GameActions.DEALING
 	_deal_cards(PlayerNode, 2)
 	_deal_cards(HouseNode, 2)
 	HouseHandContainer.get_child(1).flip_card(true)
 
 	Global.game_state = Global.GameStates.PLAYER_TURN
+	first_round = false
 	_change_info("Your turn", Global.ctp_blue)
 
 func _deal_cards(side: Node2D, count: int) -> void:
@@ -62,11 +67,10 @@ func _deal_cards(side: Node2D, count: int) -> void:
 		var card = DeckNode.deck.pop_front()
 		var current_parent = card.get_parent()
 		current_parent.remove_child(card)
+		if not first_round:
+			CardAnim.play("deal_player") if side == PlayerNode else CardAnim.play("deal_house")
+			await CardAnim.animation_finished
 		side.add_card_to_hand(card)
-		if side == PlayerNode:
-			PlayerHandContainer.add_child(card)
-		elif side == HouseNode:
-			HouseHandContainer.add_child(card)
 	side.calc_total()
 
 func _change_info(text: String, colour: String = "#cdd6f4") -> void:

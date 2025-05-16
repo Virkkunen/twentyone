@@ -1,11 +1,14 @@
 class_name House extends Node2D
 
+@onready var HandContainer = $/root/Game/UI/Middle/House/HouseHand
+
 @export var hand : Array[Card] = []
 
 var first_turn: bool = true
 
 func add_card_to_hand(card: Card) -> void:
 	hand.append(card)
+	HandContainer.add_child(card)
 
 func calc_total() -> void:
 	var total = 0
